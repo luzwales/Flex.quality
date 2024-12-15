@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <RootNamespace>Flex.Quality</RootNamespace>
+        <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="Localization\Quality\*.json"/>
+        <Content Remove="Localization\Quality\*.json"/>
+    </ItemGroup>
+
+
+    <ItemGroup>
+        <PackageReference Include="Lion.AbpPro.Core"/>
+        <PackageReference Include="Lion.AbpPro.BasicManagement.Domain"/>
+        <PackageReference Include="Lion.AbpPro.NotificationManagement.Domain"/>
+        <PackageReference Include="Lion.AbpPro.DataDictionaryManagement.Domain"/>
+        <PackageReference Include="Lion.AbpPro.LanguageManagement.Domain"/>
+    </ItemGroup>
+
+</Project>

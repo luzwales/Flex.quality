@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <RootNamespace>Flex.Quality</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Flex.Quality.Domain.Shared\Flex.Quality.Domain.Shared.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Lion.AbpPro.BasicManagement.Domain"/>
+        <PackageReference Include="Lion.AbpPro.NotificationManagement.Domain"/>
+        <PackageReference Include="Lion.AbpPro.DataDictionaryManagement.Domain"/>
+        <PackageReference Include="Lion.AbpPro.LanguageManagement.Domain"/>
+    </ItemGroup>
+
+</Project>

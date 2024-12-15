@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <RootNamespace>Flex.Quality</RootNamespace>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\Flex.Quality.EntityFrameworkCore\Flex.Quality.EntityFrameworkCore.csproj"/>
+        <ProjectReference Include="..\Flex.Quality.TestBase\Flex.Quality.TestBase.csproj"/>
+        <PackageReference Include="Volo.Abp.EntityFrameworkCore.Sqlite"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.NET.Test.Sdk"/>
+    </ItemGroup>
+
+</Project>

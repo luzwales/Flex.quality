@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <RootNamespace>Flex.Quality</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Flex.Quality.Application.Contracts\Flex.Quality.Application.Contracts.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Lion.AbpPro.BasicManagement.HttpApi.Client"/>
+        <PackageReference Include="Lion.AbpPro.NotificationManagement.HttpApi.Client"/>
+        <PackageReference Include="Lion.AbpPro.DataDictionaryManagement.HttpApi.Client"/>
+        <PackageReference Include="Lion.AbpPro.LanguageManagement.HttpApi.Client"/>
+    </ItemGroup>
+
+</Project>

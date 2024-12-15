@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <RootNamespace>Flex.Quality</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Flex.Quality.Domain.Shared\Flex.Quality.Domain.Shared.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.ObjectExtending"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Lion.AbpPro.BasicManagement.Application.Contracts"/>
+        <PackageReference Include="Lion.AbpPro.NotificationManagement.Application.Contracts"/>
+        <PackageReference Include="Lion.AbpPro.DataDictionaryManagement.Application.Contracts"/>
+        <PackageReference Include="Lion.AbpPro.LanguageManagement.Application.Contracts"/>
+    </ItemGroup>
+
+</Project>

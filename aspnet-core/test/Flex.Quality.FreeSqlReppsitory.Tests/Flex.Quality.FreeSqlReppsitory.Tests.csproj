@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<RootNamespace>Flex.Quality</RootNamespace>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\src\Flex.Quality.FreeSqlRepository\Flex.Quality.FreeSqlRepository.csproj" />
+	  <ProjectReference Include="..\Flex.Quality.TestBase\Flex.Quality.TestBase.csproj" />
+	</ItemGroup>
+
+</Project>

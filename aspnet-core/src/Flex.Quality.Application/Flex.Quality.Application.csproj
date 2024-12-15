@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <RootNamespace>Flex.Quality</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Flex.Quality.Domain\Flex.Quality.Domain.csproj"/>
+        <ProjectReference Include="..\Flex.Quality.Application.Contracts\Flex.Quality.Application.Contracts.csproj"/>
+        <ProjectReference Include="..\Flex.Quality.FreeSqlRepository\Flex.Quality.FreeSqlRepository.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Lion.AbpPro.BasicManagement.Application"/>
+        <PackageReference Include="Lion.AbpPro.NotificationManagement.Application"/>
+        <PackageReference Include="Lion.AbpPro.DataDictionaryManagement.Application"/>
+        <PackageReference Include="Lion.AbpPro.LanguageManagement.Application"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.BackgroundJobs.HangFire"/>
+    </ItemGroup>
+
+</Project>
