@@ -33,98 +33,92 @@
         {{ t('sys.login.registerButton') }}
       </Button> -->
     </FormItem>
-    <ARow class="enter-x">
+    <!-- <ARow class="enter-x">
       <ACol :md="8" :xs="24">
         <Button block @click="setLoginState(LoginStateEnum.TENANT)">
           {{ t('sys.login.tenantFormTitle') }}
         </Button>
       </ACol>
-    </ARow>
-
+    </ARow> -->
   </Form>
 </template>
 <script lang="ts" setup>
-  import { reactive, ref, toRaw, unref, computed } from 'vue';
+import { reactive, ref, toRaw, unref, computed } from 'vue';
 
-  import { Checkbox, Form, Input, Row, Col, Button, Divider } from 'ant-design-vue';
-  import {
-    GithubFilled,
-    WechatFilled,
-    AlipayCircleFilled,
-    GoogleCircleFilled,
-    TwitterCircleFilled,
-    LoginOutlined,
-  } from '@ant-design/icons-vue';
-  import LoginFormTitle from './LoginFormTitle.vue';
+import { Checkbox, Form, Input, Row, Col, Button, Divider } from 'ant-design-vue';
+import {
+  GithubFilled,
+  WechatFilled,
+  AlipayCircleFilled,
+  GoogleCircleFilled,
+  TwitterCircleFilled,
+  LoginOutlined,
+} from '@ant-design/icons-vue';
+import LoginFormTitle from './LoginFormTitle.vue';
 
-  import { useI18n } from '/@/hooks/web/useI18n';
-  import { useMessage } from '/@/hooks/web/useMessage';
+import { useI18n } from '/@/hooks/web/useI18n';
+import { useMessage } from '/@/hooks/web/useMessage';
 
-  import { useUserStore } from '/@/store/modules/user';
-  import {
-    LoginStateEnum,
-    useLoginState,
-    useFormRules,
-    useFormValid,
-  } from './useLogin';
-  import { useDesign } from '/@/hooks/web/useDesign';
-  //import { onKeyStroke } from '@vueuse/core';
+import { useUserStore } from '/@/store/modules/user';
+import { LoginStateEnum, useLoginState, useFormRules, useFormValid } from './useLogin';
+import { useDesign } from '/@/hooks/web/useDesign';
+//import { onKeyStroke } from '@vueuse/core';
 
-  const ACol = Col;
-  const ARow = Row;
-  const FormItem = Form.Item;
-  const InputPassword = Input.Password;
-  const { t } = useI18n();
-  const { notification, createErrorModal } = useMessage();
-  const { prefixCls } = useDesign('login');
-  const userStore = useUserStore();
+const ACol = Col;
+const ARow = Row;
+const FormItem = Form.Item;
+const InputPassword = Input.Password;
+const { t } = useI18n();
+const { notification, createErrorModal } = useMessage();
+const { prefixCls } = useDesign('login');
+const userStore = useUserStore();
 
-  const { setLoginState, getLoginState } = useLoginState();
-  const { getFormRules } = useFormRules();
+const { setLoginState, getLoginState } = useLoginState();
+const { getFormRules } = useFormRules();
 
-  const formRef = ref();
-  const loading = ref(false);
-  const rememberMe = ref(false);
+const formRef = ref();
+const loading = ref(false);
+const rememberMe = ref(false);
 
-  const formData = reactive({
-    account: 'admin',
-    password: '1q2w3E*',
-  });
+const formData = reactive({
+  account: '',
+  password: '',
+});
 
-  const { validForm } = useFormValid(formRef);
+const { validForm } = useFormValid(formRef);
 
-  //onKeyStroke('Enter', handleLogin);
+//onKeyStroke('Enter', handleLogin);
 
-  const getShow = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN);
+const getShow = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN);
 
-  async function handleLogin() {
-    const data = await validForm();
-    if (!data) return;
-    try {
-      loading.value = true;
-      const userInfo = await userStore.login(
-        toRaw({
-          password: data.password,
-          username: data.account,
-          tenantId: '',
-          mode: 'none', //不要默认的错误提示
-        })
-      );
-      if (userInfo) {
-        notification.success({
-          message: t('sys.login.loginSuccessTitle'),
-          description: `${t('sys.login.loginSuccessDesc')}: ${userInfo.realName}`,
-          duration: 3,
-        });
-      }
-    } catch (error) {
-      createErrorModal({
-        title: t('sys.api.errorTip'),
-        content: t('sys.api.networkExceptionMsg'),
-        getContainer: () => document.body.querySelector(`.${prefixCls}`) || document.body,
+async function handleLogin() {
+  const data = await validForm();
+  if (!data) return;
+  try {
+    loading.value = true;
+    const userInfo = await userStore.login(
+      toRaw({
+        password: data.password,
+        username: data.account,
+        tenantId: '',
+        mode: 'none', //不要默认的错误提示
+      }),
+    );
+    if (userInfo) {
+      notification.success({
+        message: t('sys.login.loginSuccessTitle'),
+        description: `${t('sys.login.loginSuccessDesc')}: ${userInfo.realName}`,
+        duration: 7,
       });
-    } finally {
-      loading.value = false;
     }
+  } catch (error) {
+    createErrorModal({
+      title: t('sys.api.errorTip'),
+      content: t('sys.api.networkExceptionMsg'),
+      getContainer: () => document.body.querySelector(`.${prefixCls}`) || document.body,
+    });
+  } finally {
+    loading.value = false;
   }
+}
 </script>
