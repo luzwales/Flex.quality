@@ -92,7 +92,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AbpDataDictionaries", (string)null);
+                    b.ToTable("Abp_DataDictionaries", "Qa");
                 });
 
             modelBuilder.Entity("Lion.AbpPro.DataDictionaryManagement.DataDictionaries.Aggregates.DataDictionaryDetail", b =>
@@ -138,7 +138,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasIndex("DataDictionaryId");
 
-                    b.ToTable("AbpDataDictionaryDetails", (string)null);
+                    b.ToTable("Abp_DataDictionaryDetails", "Qa");
                 });
 
             modelBuilder.Entity("Lion.AbpPro.LanguageManagement.LanguageTexts.Aggregates.LanguageText", b =>
@@ -220,7 +220,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasIndex("TenantId", "ResourceName", "CultureName");
 
-                    b.ToTable("AbpLanguageTexts", (string)null);
+                    b.ToTable("QA.Abp_LanguageTexts", (string)null);
                 });
 
             modelBuilder.Entity("Lion.AbpPro.LanguageManagement.Languages.Aggregates.Language", b =>
@@ -307,7 +307,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasIndex("CultureName");
 
-                    b.ToTable("AbpLanguages", (string)null);
+                    b.ToTable("QA.Abp_Languages", (string)null);
                 });
 
             modelBuilder.Entity("Lion.AbpPro.NotificationManagement.Notifications.Aggregates.Notification", b =>
@@ -400,7 +400,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AbpNotifications", (string)null);
+                    b.ToTable("Abp_Notifications", "Qa");
                 });
 
             modelBuilder.Entity("Lion.AbpPro.NotificationManagement.Notifications.Aggregates.NotificationSubscription", b =>
@@ -476,7 +476,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasIndex("ReceiveUserId");
 
-                    b.ToTable("AbpNotificationSubscriptions", (string)null);
+                    b.ToTable("Abp_NotificationSubscriptions", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>
@@ -597,7 +597,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasIndex("TenantId", "UserId", "ExecutionTime");
 
-                    b.ToTable("AbpAuditLogs", (string)null);
+                    b.ToTable("Abp_AuditLogs", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLogAction", b =>
@@ -646,7 +646,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasIndex("TenantId", "ServiceName", "MethodName", "ExecutionTime");
 
-                    b.ToTable("AbpAuditLogActions", (string)null);
+                    b.ToTable("Abp_AuditLogActions", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.EntityChange", b =>
@@ -694,7 +694,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasIndex("TenantId", "EntityTypeFullName", "EntityId");
 
-                    b.ToTable("AbpEntityChanges", (string)null);
+                    b.ToTable("Abp_EntityChanges", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.EntityPropertyChange", b =>
@@ -735,7 +735,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasIndex("EntityChangeId");
 
-                    b.ToTable("AbpEntityPropertyChanges", (string)null);
+                    b.ToTable("Abp_EntityPropertyChanges", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.BackgroundJobs.BackgroundJobRecord", b =>
@@ -794,7 +794,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasIndex("IsAbandoned", "NextTryTime");
 
-                    b.ToTable("AbpBackgroundJobs", (string)null);
+                    b.ToTable("Abp_BackgroundJobs", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.FeatureManagement.FeatureDefinitionRecord", b =>
@@ -854,7 +854,7 @@ namespace Flex.Quality.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("AbpFeatures", (string)null);
+                    b.ToTable("Abp_Features", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.FeatureManagement.FeatureGroupDefinitionRecord", b =>
@@ -881,7 +881,7 @@ namespace Flex.Quality.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("AbpFeatureGroups", (string)null);
+                    b.ToTable("Abp_FeatureGroups", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.FeatureManagement.FeatureValue", b =>
@@ -913,7 +913,7 @@ namespace Flex.Quality.Migrations
                         .IsUnique()
                         .HasFilter("[ProviderName] IS NOT NULL AND [ProviderKey] IS NOT NULL");
 
-                    b.ToTable("AbpFeatureValues", (string)null);
+                    b.ToTable("Abp_FeatureValues", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityClaimType", b =>
@@ -961,7 +961,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AbpClaimTypes", (string)null);
+                    b.ToTable("Abp_ClaimTypes", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityLinkUser", b =>
@@ -987,7 +987,7 @@ namespace Flex.Quality.Migrations
                         .IsUnique()
                         .HasFilter("[SourceTenantId] IS NOT NULL AND [TargetTenantId] IS NOT NULL");
 
-                    b.ToTable("AbpLinkUsers", (string)null);
+                    b.ToTable("Abp_LinkUsers", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityRole", b =>
@@ -1040,7 +1040,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasIndex("NormalizedName");
 
-                    b.ToTable("AbpRoles", (string)null);
+                    b.ToTable("Abp_Roles", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityRoleClaim", b =>
@@ -1068,7 +1068,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AbpRoleClaims", (string)null);
+                    b.ToTable("Abp_RoleClaims", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentitySecurityLog", b =>
@@ -1144,7 +1144,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasIndex("TenantId", "UserId");
 
-                    b.ToTable("AbpSecurityLogs", (string)null);
+                    b.ToTable("Abp_SecurityLogs", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentitySession", b =>
@@ -1195,7 +1195,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasIndex("TenantId", "UserId");
 
-                    b.ToTable("AbpSessions", (string)null);
+                    b.ToTable("Abp_Sessions", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityUser", b =>
@@ -1361,7 +1361,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasIndex("UserName");
 
-                    b.ToTable("AbpUsers", (string)null);
+                    b.ToTable("Abp_Users", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityUserClaim", b =>
@@ -1389,7 +1389,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AbpUserClaims", (string)null);
+                    b.ToTable("Abp_UserClaims", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityUserDelegation", b =>
@@ -1415,7 +1415,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AbpUserDelegations", (string)null);
+                    b.ToTable("Abp_UserDelegations", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityUserLogin", b =>
@@ -1444,7 +1444,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasIndex("LoginProvider", "ProviderKey");
 
-                    b.ToTable("AbpUserLogins", (string)null);
+                    b.ToTable("Abp_UserLogins", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityUserOrganizationUnit", b =>
@@ -1471,7 +1471,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasIndex("UserId", "OrganizationUnitId");
 
-                    b.ToTable("AbpUserOrganizationUnits", (string)null);
+                    b.ToTable("Abp_UserOrganizationUnits", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityUserRole", b =>
@@ -1490,7 +1490,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasIndex("RoleId", "UserId");
 
-                    b.ToTable("AbpUserRoles", (string)null);
+                    b.ToTable("Abp_UserRoles", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityUserToken", b =>
@@ -1515,7 +1515,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AbpUserTokens", (string)null);
+                    b.ToTable("Abp_UserTokens", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.OrganizationUnit", b =>
@@ -1593,7 +1593,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasIndex("ParentId");
 
-                    b.ToTable("AbpOrganizationUnits", (string)null);
+                    b.ToTable("Abp_OrganizationUnits", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.OrganizationUnitRole", b =>
@@ -1620,7 +1620,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasIndex("RoleId", "OrganizationUnitId");
 
-                    b.ToTable("AbpOrganizationUnitRoles", (string)null);
+                    b.ToTable("Abp_OrganizationUnitRoles", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.PermissionManagement.PermissionDefinitionRecord", b =>
@@ -1672,7 +1672,7 @@ namespace Flex.Quality.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("AbpPermissions", (string)null);
+                    b.ToTable("Abp_Permissions", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.PermissionManagement.PermissionGrant", b =>
@@ -1705,7 +1705,7 @@ namespace Flex.Quality.Migrations
                         .IsUnique()
                         .HasFilter("[TenantId] IS NOT NULL");
 
-                    b.ToTable("AbpPermissionGrants", (string)null);
+                    b.ToTable("Abp_PermissionGrants", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.PermissionManagement.PermissionGroupDefinitionRecord", b =>
@@ -1732,7 +1732,7 @@ namespace Flex.Quality.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("AbpPermissionGroups", (string)null);
+                    b.ToTable("Abp_PermissionGroups", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.SettingManagement.Setting", b =>
@@ -1764,7 +1764,7 @@ namespace Flex.Quality.Migrations
                         .IsUnique()
                         .HasFilter("[ProviderName] IS NOT NULL AND [ProviderKey] IS NOT NULL");
 
-                    b.ToTable("AbpSettings", (string)null);
+                    b.ToTable("Abp_Settings", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.SettingManagement.SettingDefinitionRecord", b =>
@@ -1812,7 +1812,7 @@ namespace Flex.Quality.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("AbpSettingDefinitions", (string)null);
+                    b.ToTable("Abp_SettingDefinitions", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.TenantManagement.Tenant", b =>
@@ -1881,7 +1881,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasIndex("NormalizedName");
 
-                    b.ToTable("AbpTenants", (string)null);
+                    b.ToTable("Abp_Tenants", "Qa");
                 });
 
             modelBuilder.Entity("Volo.Abp.TenantManagement.TenantConnectionString", b =>
@@ -1900,7 +1900,7 @@ namespace Flex.Quality.Migrations
 
                     b.HasKey("TenantId", "Name");
 
-                    b.ToTable("AbpTenantConnectionStrings", (string)null);
+                    b.ToTable("Abp_TenantConnectionStrings", "Qa");
                 });
 
             modelBuilder.Entity("Lion.AbpPro.DataDictionaryManagement.DataDictionaries.Aggregates.DataDictionaryDetail", b =>

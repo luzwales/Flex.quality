@@ -6,6 +6,6 @@ public abstract class QualityAppService : ApplicationService
 {
     protected QualityAppService()
     {
-        LocalizationResource = typeof(QualityResource);
+        LocalizationResource = typeof(OrganizationResource);
     }
 }

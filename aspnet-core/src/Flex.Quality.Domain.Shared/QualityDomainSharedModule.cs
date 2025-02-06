@@ -19,23 +19,26 @@ public class QualityDomainSharedModule : AbpModule
     {
         Configure<AbpVirtualFileSystemOptions>(options =>
         {
-            options.FileSets.AddEmbedded<QualityDomainSharedModule>(QualityDomainSharedConsts.NameSpace);
+            options.FileSets.AddEmbedded<QualityDomainSharedModule>(
+                QualityDomainSharedConsts.NameSpace);
         });
 
         Configure<AbpLocalizationOptions>(options =>
         {
             options.Resources
-                .Add<QualityResource>(QualityDomainSharedConsts.DefaultCultureName)
+                .Add<OrganizationResource>(QualityDomainSharedConsts.DefaultCultureName)
                 .AddVirtualJson("/Localization/Quality")
                 .AddBaseTypes(typeof(BasicManagementResource))
                 .AddBaseTypes(typeof(AbpTimingResource));
 
-            options.DefaultResourceType = typeof(QualityResource);
+            options.DefaultResourceType = typeof(OrganizationResource);
         });
 
         Configure<AbpExceptionLocalizationOptions>(options =>
         {
-            options.MapCodeNamespace(QualityDomainSharedConsts.NameSpace, typeof(QualityResource));
+            options.MapCodeNamespace(
+                QualityDomainSharedConsts.NameSpace,
+                typeof(OrganizationResource));
         });
     }
 }

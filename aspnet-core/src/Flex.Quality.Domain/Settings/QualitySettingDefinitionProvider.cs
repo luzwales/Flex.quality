@@ -18,6 +18,6 @@ public class QualitySettingDefinitionProvider : SettingDefinitionProvider
 
     private static LocalizableString L(string name)
     {
-        return LocalizableString.Create<QualityResource>(name);
+        return LocalizableString.Create<OrganizationResource>(name);
     }
 }

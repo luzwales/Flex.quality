@@ -20,7 +20,7 @@
 
 <body>
 <div class="container projects">
-    <div class="projects-header page-header">
+    <div class="projects-header">
         <h2>Host Client Monitor</h2>
         @* <p>这些项目或者是对Bootstrap进行了有益的补充，或者是基于Bootstrap开发的</p> *@
     </div>
@@ -87,7 +87,7 @@
     }
 
     .container {
-        width: 1170px;
+        width: 100%;
         padding-right: 15px;
         padding-left: 15px;
         margin-right: auto;
@@ -99,10 +99,7 @@
         text-align: center;
         font-weight: 200;
         display: block;
-        margin: 60px auto 40px !important;
-    }
-
-    .page-header {
+        /*margin: 60px auto 40px !important;*/
         padding-bottom: 9px;
         margin: 40px auto;
         border-bottom: 1px solid #eee;
@@ -129,10 +126,6 @@
     .row {
         margin-right: -15px;
         margin-left: -15px;
-    }
-
-    .col-lg-3 {
-        width: 25%;
     }
 
     .projects .thumbnail {

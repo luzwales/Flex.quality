@@ -1,4 +1,3 @@
-using Flex.Quality;
 using Lion.AbpPro.DataDictionaryManagement;
 using Lion.AbpPro.LanguageManagement;
 
@@ -23,7 +22,7 @@ public class QualityHttpApiModule : AbpModule
         Configure<AbpLocalizationOptions>(options =>
         {
             options.Resources
-                .Get<QualityResource>()
+                .Get<OrganizationResource>()
                 .AddBaseTypes(
                     typeof(AbpUiResource)
                 );

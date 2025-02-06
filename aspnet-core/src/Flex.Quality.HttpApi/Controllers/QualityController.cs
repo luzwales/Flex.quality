@@ -6,6 +6,6 @@ public abstract class QualityController : AbpController
 {
     protected QualityController()
     {
-        LocalizationResource = typeof(QualityResource);
+        LocalizationResource = typeof(OrganizationResource);
     }
 }
