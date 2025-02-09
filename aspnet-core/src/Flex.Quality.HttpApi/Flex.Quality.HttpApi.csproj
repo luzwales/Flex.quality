@@ -7,6 +7,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Flex.Quality.Application.Contracts\Flex.Quality.Application.Contracts.csproj"/>
+        <ProjectReference Include="..\Flex.Quality.Application\Flex.Quality.Application.csproj"/>
     </ItemGroup>
 
     <ItemGroup>

@@ -1,0 +1,4 @@
+﻿### Application.Contracts
+
+- DTO
+- Interfaces

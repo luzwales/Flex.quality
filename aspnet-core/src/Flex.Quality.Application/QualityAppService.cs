@@ -9,3 +9,4 @@ public abstract class QualityAppService : ApplicationService
         LocalizationResource = typeof(OrganizationResource);
     }
 }
+//Application里面放 Service
