@@ -7,6 +7,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Flex.Quality.Domain.Shared\Flex.Quality.Domain.Shared.csproj"/>
+        <ProjectReference Include="..\Flex.Quality.EntityFrameworkCore\Flex.Quality.EntityFrameworkCore.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
