@@ -10,14 +10,29 @@ namespace Flex.Quality.Admin;
 [Dependency(ServiceLifetime.Singleton)]
 public class OrganizationAppService(
     IRepository<OrganizationUnit, Guid> organizationUnitRepository,
-    IObjectMapper objectMapper)
+    IObjectMapper objectMapper,
+    IRepository<Users, Guid> userRepository,
+    IOrganizationAppService organizationAppServiceImplementation)
     : IOrganizationAppService, IRemoteService
 {
+    private IOrganizationAppService _organizationAppServiceImplementation { get; set; }
+
     public async Task<List<OrganizationUnitDto>> GetAllChildrenRecursiveAsync(Guid parentId)
     {
         var result = new List<OrganizationUnitDto>();
         await GetChildrenRecursiveAsync(parentId, result);
         return result;
+    }
+
+    public async Task<OrganizationUnitDto> GetOrganizationUnitByUserAsync(Guid userId)
+    {
+        var user = await userRepository.GetAsync(userId);
+        var organizationUnit =
+            await organizationUnitRepository.FirstOrDefaultAsync(x => x.Id == user.OrganizationUnitId);
+
+        if (organizationUnit == null) throw new Exception("OrganizationUnit not found for the user.");
+
+        return objectMapper.Map<OrganizationUnit, OrganizationUnitDto>(organizationUnit);
     }
 
     private async Task GetChildrenRecursiveAsync(Guid parentId, List<OrganizationUnitDto> result)

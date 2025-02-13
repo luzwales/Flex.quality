@@ -7,4 +7,5 @@ public interface IOrganizationAppService
     // 其他方法声明...
 
     Task<List<OrganizationUnitDto>> GetAllChildrenRecursiveAsync(Guid parentId);
+    Task<OrganizationUnitDto> GetOrganizationUnitByUserAsync(Guid userId);
 }
