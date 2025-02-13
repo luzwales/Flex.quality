@@ -1,3 +1,4 @@
+using Lion.AbpPro.CodeManagement;
 using Volo.Abp.PermissionManagement;
 
 namespace Flex.Quality;
@@ -10,6 +11,7 @@ namespace Flex.Quality;
     typeof(DataDictionaryManagementApplicationModule),
     typeof(LanguageManagementApplicationModule),
     typeof(QualityFreeSqlModule)
+    , typeof(CodeManagementApplicationModule)
 )]
 public class QualityApplicationModule : AbpModule
 {

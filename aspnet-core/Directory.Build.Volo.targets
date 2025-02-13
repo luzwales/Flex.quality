@@ -51,11 +51,12 @@
         <PackageReference Update="Volo.Abp.Account.Application.Contracts" Version="8.3.3"/>
         <PackageReference Update="Volo.Abp.Identity.Application.Contracts" Version="8.3.3"/>
         <PackageReference Update="Volo.Abp.PermissionManagement.Application.Contracts" Version="8.3.3"/>
+        <PackageReference Update="Volo.Abp.PermissionManagement.Domain.Identity" Version="8.3.3"/>
+        <PackageReference Update="Volo.Abp.PermissionManagement.Domain.Shared" Version="8.3.3"/>
         <PackageReference Update="Volo.Abp.TenantManagement.Application.Contracts" Version="8.3.3"/>
         <PackageReference Update="Volo.Abp.FeatureManagement.Application.Contracts" Version="8.3.3"/>
         <PackageReference Update="Volo.Abp.SettingManagement.Application.Contracts" Version="8.3.3"/>
         <PackageReference Update="Volo.Abp.Emailing" Version="8.3.3"/>
-        <PackageReference Update="Volo.Abp.PermissionManagement.Domain.Identity" Version="8.3.3"/>
         <PackageReference Update="Volo.Abp.BackgroundJobs.Domain" Version="8.3.3"/>
         <PackageReference Update="Volo.Abp.AuditLogging.Domain" Version="8.3.3"/>
         <PackageReference Update="Volo.Abp.TenantManagement.Domain" Version="8.3.3"/>
@@ -67,7 +68,6 @@
         <PackageReference Update="Volo.Abp.AuditLogging.Domain.Shared" Version="8.3.3"/>
         <PackageReference Update="Volo.Abp.TenantManagement.Domain.Shared" Version="8.3.3"/>
         <PackageReference Update="Volo.Abp.FeatureManagement.Domain.Shared" Version="8.3.3"/>
-        <PackageReference Update="Volo.Abp.PermissionManagement.Domain.Shared" Version="8.3.3"/>
         <PackageReference Update="Volo.Abp.SettingManagement.Domain.Shared" Version="8.3.3"/>
         <PackageReference Update="Volo.Abp.Account.HttpApi" Version="8.3.3"/>
         <PackageReference Update="Volo.Abp.Identity.HttpApi" Version="8.3.3"/>

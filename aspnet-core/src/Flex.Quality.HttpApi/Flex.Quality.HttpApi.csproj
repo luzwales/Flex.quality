@@ -11,6 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="Lion.AbpPro.CodeManagement.HttpApi" Version="1.2.2"/>
         <PackageReference Include="Swashbuckle.AspNetCore.Annotations"/>
     </ItemGroup>
 

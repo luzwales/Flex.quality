@@ -1,3 +1,5 @@
+using Lion.AbpPro.CodeManagement;
+
 namespace Flex.Quality;
 
 [DependsOn(
@@ -6,7 +8,8 @@ namespace Flex.Quality;
     typeof(BasicManagementApplicationContractsModule),
     typeof(NotificationManagementApplicationContractsModule),
     typeof(DataDictionaryManagementApplicationContractsModule),
-    typeof(LanguageManagementApplicationContractsModule)
+    typeof(LanguageManagementApplicationContractsModule),
+    typeof(CodeManagementApplicationContractsModule)
 )]
 public class QualityApplicationContractsModule : AbpModule
 {

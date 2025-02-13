@@ -25,4 +25,10 @@ public class OrganizationController(
     {
         await permissionAppService.GrantPermissionsForOrganizationAsync(organization, permissionNames);
     }
+
+    [HttpPut("grant-permission-for-department")]
+    public async Task GrantPermissionForUserAsync(string organization, string permissionName)
+    {
+        await permissionAppService.GrantPermissionForOrganizationAsync(organization, permissionName);
+    }
 }

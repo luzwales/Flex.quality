@@ -1,3 +1,4 @@
+using Lion.AbpPro.CodeManagement;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.BlobStoring.Database;
@@ -12,7 +13,8 @@ namespace Flex.Quality;
     typeof(BasicManagementDomainModule),
     typeof(NotificationManagementDomainModule),
     typeof(DataDictionaryManagementDomainModule),
-    typeof(LanguageManagementDomainModule)
+    typeof(LanguageManagementDomainModule),
+    typeof(CodeManagementDomainModule)
 )]
 public class QualityDomainModule : AbpModule
 {
@@ -44,5 +46,6 @@ public class QualityDomainModule : AbpModule
         // LanguageManagementDbProperties.DbSchema = "Qa";
         NotificationManagementDbProperties.DbTablePrefix = "Abp_";
         NotificationManagementDbProperties.DbSchema = "Qa";
+        CodeManagementDbProperties.DbTablePrefix = "Qa.Abp_";
     }
 }

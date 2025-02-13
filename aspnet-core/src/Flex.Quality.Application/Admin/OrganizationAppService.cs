@@ -1,5 +1,6 @@
 ﻿using Lion.AbpPro.BasicManagement.OrganizationUnits.Dto;
 using Microsoft.Extensions.DependencyInjection;
+using Volo.Abp;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Identity;
 using Volo.Abp.ObjectMapping;
@@ -10,7 +11,7 @@ namespace Flex.Quality.Admin;
 public class OrganizationAppService(
     IRepository<OrganizationUnit, Guid> organizationUnitRepository,
     IObjectMapper objectMapper)
-    : IOrganizationAppService
+    : IOrganizationAppService, IRemoteService
 {
     public async Task<List<OrganizationUnitDto>> GetAllChildrenRecursiveAsync(Guid parentId)
     {

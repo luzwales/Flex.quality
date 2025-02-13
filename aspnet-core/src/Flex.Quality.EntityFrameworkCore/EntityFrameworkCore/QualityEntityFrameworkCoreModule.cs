@@ -1,3 +1,4 @@
+using Lion.AbpPro.CodeManagement.EntityFrameworkCore;
 using Volo.Abp.Guids;
 
 namespace Flex.Quality.EntityFrameworkCore;
@@ -8,7 +9,9 @@ namespace Flex.Quality.EntityFrameworkCore;
     typeof(BasicManagementEntityFrameworkCoreModule),
     typeof(DataDictionaryManagementEntityFrameworkCoreModule),
     typeof(NotificationManagementEntityFrameworkCoreModule),
-    typeof(LanguageManagementEntityFrameworkCoreModule)
+    typeof(LanguageManagementEntityFrameworkCoreModule),
+    typeof(CodeManagementEntityFrameworkCoreModule),
+    typeof(AbpPermissionManagementDomainModule)
 )]
 public class QualityEntityFrameworkCoreModule : AbpModule
 {

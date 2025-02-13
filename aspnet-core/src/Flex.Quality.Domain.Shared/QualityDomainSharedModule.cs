@@ -1,3 +1,5 @@
+using Lion.AbpPro.CodeManagement;
+
 namespace Flex.Quality;
 
 [DependsOn(
@@ -5,7 +7,8 @@ namespace Flex.Quality;
     typeof(NotificationManagementDomainSharedModule),
     typeof(DataDictionaryManagementDomainSharedModule),
     typeof(LanguageManagementDomainSharedModule),
-    typeof(AbpProCoreModule)
+    typeof(AbpProCoreModule),
+    typeof(CodeManagementDomainSharedModule)
 )]
 public class QualityDomainSharedModule : AbpModule
 {

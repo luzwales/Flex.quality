@@ -1,4 +1,5 @@
 using Lion.AbpPro.BasicManagement;
+using Lion.AbpPro.CodeManagement;
 using Lion.AbpPro.DataDictionaryManagement;
 using Lion.AbpPro.LanguageManagement;
 using Lion.AbpPro.NotificationManagement;
@@ -10,7 +11,8 @@ namespace Flex.Quality;
     typeof(BasicManagementHttpApiClientModule),
     typeof(NotificationManagementHttpApiClientModule),
     typeof(DataDictionaryManagementHttpApiClientModule),
-    typeof(LanguageManagementHttpApiClientModule)
+    typeof(LanguageManagementHttpApiClientModule),
+    typeof(CodeManagementHttpApiClientModule)
 )]
 public class QualityHttpApiClientModule : AbpModule
 {

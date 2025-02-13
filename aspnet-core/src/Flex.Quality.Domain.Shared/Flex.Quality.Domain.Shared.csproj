@@ -12,6 +12,7 @@
 
 
     <ItemGroup>
+        <PackageReference Include="Lion.AbpPro.CodeManagement.Domain.Shared" Version="1.2.2"/>
         <PackageReference Include="Lion.AbpPro.Core"/>
         <PackageReference Include="Lion.AbpPro.BasicManagement.Domain"/>
         <PackageReference Include="Lion.AbpPro.NotificationManagement.Domain"/>

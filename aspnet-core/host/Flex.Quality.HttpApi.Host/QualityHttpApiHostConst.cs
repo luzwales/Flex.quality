@@ -5,7 +5,7 @@ public static class QualityHttpApiHostConst
     /// <summary>
     ///     跨域策略名
     /// </summary>
-    public const string DefaultCorsPolicyName = "Default";
+    public const string DefaultCorsPolicyName = "AllowAllOrigins";
 
     /// <summary>
     ///     Cookies名称

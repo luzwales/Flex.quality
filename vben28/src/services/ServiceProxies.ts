@@ -8,7 +8,13 @@
 // ReSharper disable InconsistentNaming
 
 import {ServiceProxyBase} from './ServiceProxyBase'
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, CancelToken } from 'axios';
+import axios, {
+    AxiosError,
+    AxiosInstance,
+    AxiosRequestConfig,
+    AxiosResponse,
+    CancelToken
+} from 'axios';
 
 import dayjs from 'dayjs';
 
@@ -1471,6 +1477,2121 @@ export class DataDictionaryServiceProxy extends ServiceProxyBase {
     }
 }
 
+export class DataTypesServiceProxy extends ServiceProxyBase {
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    private instance: AxiosInstance;
+    private baseUrl: string;
+
+    constructor(baseUrl?: string, instance?: AxiosInstance) {
+        super();
+        this.instance = instance ? instance : axios.create();
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    /**
+     * 获取类型
+     * @param body (optional)
+     * @return Success
+     */
+    list(body: GetDataTypeInput | undefined, cancelToken?: CancelToken | undefined): Promise<DataTypeDto[]> {
+        let url_ = this.baseUrl + "/DataTypes/List";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processList(_response));
+        });
+    }
+
+    protected processList(response: AxiosResponse): Promise<DataTypeDto[]> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200 = _responseText;
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(DataTypeDto.fromJS(item));
+            } else {
+                result200 = <any>null;
+            }
+            return Promise.resolve<DataTypeDto[]>(result200);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<DataTypeDto[]>(null as any);
+    }
+}
+
+export class EntityModelsServiceProxy extends ServiceProxyBase {
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    private instance: AxiosInstance;
+    private baseUrl: string;
+
+    constructor(baseUrl?: string, instance?: AxiosInstance) {
+        super();
+        this.instance = instance ? instance : axios.create();
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    /**
+     * 分页获取实体属性
+     * @param body (optional)
+     * @return Success
+     */
+    pageProperty(body: PageEntityModelInput | undefined, cancelToken?: CancelToken | undefined): Promise<PageEntityModelPropertyOutputPagedResultDto> {
+        let url_ = this.baseUrl + "/EntityModels/PageProperty";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processPageProperty(_response));
+        });
+    }
+
+    /**
+     * 新增聚合根
+     * @param body (optional)
+     * @return Success
+     */
+    createAggregate(body: CreateAggregateInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/EntityModels/CreateAggregate";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processCreateAggregate(_response));
+        });
+    }
+
+    /**
+     * 更新聚合根
+     * @param body (optional)
+     * @return Success
+     */
+    updateAggregate(body: UpdateAggregateInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/EntityModels/UpdateAggregate";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processUpdateAggregate(_response));
+        });
+    }
+
+    /**
+     * 删除聚合根
+     * @param body (optional)
+     * @return Success
+     */
+    deleteAggregate(body: DeleteAggregateInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/EntityModels/DeleteAggregate";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processDeleteAggregate(_response));
+        });
+    }
+
+    /**
+     * 新增实体
+     * @param body (optional)
+     * @return Success
+     */
+    createEntityModel(body: CreateEntityModelInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/EntityModels/CreateEntityModel";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processCreateEntityModel(_response));
+        });
+    }
+
+    /**
+     * 更新实体
+     * @param body (optional)
+     * @return Success
+     */
+    updateEntityModel(body: UpdateEntityModelInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/EntityModels/UpdateEntityModel";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processUpdateEntityModel(_response));
+        });
+    }
+
+    /**
+     * 删除实体
+     * @param body (optional)
+     * @return Success
+     */
+    deleteEntityModel(body: DeleteEntityModelInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/EntityModels/DeleteEntityModel";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processDeleteEntityModel(_response));
+        });
+    }
+
+    /**
+     * 新增实体属性
+     * @param body (optional)
+     * @return Success
+     */
+    createEntityModelProperty(body: CreateEntityModelPropertyInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/EntityModels/CreateEntityModelProperty";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processCreateEntityModelProperty(_response));
+        });
+    }
+
+    /**
+     * 更新实体属性
+     * @param body (optional)
+     * @return Success
+     */
+    updateEntityModelProperty(body: UpdateEntityModelPropertyInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/EntityModels/UpdateEntityModelProperty";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processUpdateEntityModelProperty(_response));
+        });
+    }
+
+    /**
+     * 删除实体属性
+     * @param body (optional)
+     * @return Success
+     */
+    deleteEntityModelProperty(body: DeleteEntityModelPropertyInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/EntityModels/DeleteEntityModelProperty";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processDeleteEntityModelProperty(_response));
+        });
+    }
+
+    /**
+     * 获取实体树
+     * @param body (optional)
+     * @return Success
+     */
+    tree(body: GetEntityModelTreeInput | undefined, cancelToken?: CancelToken | undefined): Promise<GetEntityModelTreeOutput[]> {
+        let url_ = this.baseUrl + "/EntityModels/Tree";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processTree(_response));
+        });
+    }
+
+    /**
+     * 获取模型数据
+     * @param body (optional)
+     * @return Success
+     */
+    get(body: GetEntityModelInput | undefined, cancelToken?: CancelToken | undefined): Promise<GetEntityModelOutput[]> {
+        let url_ = this.baseUrl + "/EntityModels/Get";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processGet(_response));
+        });
+    }
+
+    protected processPageProperty(response: AxiosResponse): Promise<PageEntityModelPropertyOutputPagedResultDto> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200 = _responseText;
+            result200 = PageEntityModelPropertyOutputPagedResultDto.fromJS(resultData200);
+            return Promise.resolve<PageEntityModelPropertyOutputPagedResultDto>(result200);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<PageEntityModelPropertyOutputPagedResultDto>(null as any);
+    }
+
+    protected processCreateAggregate(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processUpdateAggregate(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processDeleteAggregate(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processCreateEntityModel(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processUpdateEntityModel(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processDeleteEntityModel(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processCreateEntityModelProperty(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processUpdateEntityModelProperty(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processDeleteEntityModelProperty(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processTree(response: AxiosResponse): Promise<GetEntityModelTreeOutput[]> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200 = _responseText;
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(GetEntityModelTreeOutput.fromJS(item));
+            } else {
+                result200 = <any>null;
+            }
+            return Promise.resolve<GetEntityModelTreeOutput[]>(result200);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<GetEntityModelTreeOutput[]>(null as any);
+    }
+
+    protected processGet(response: AxiosResponse): Promise<GetEntityModelOutput[]> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200 = _responseText;
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(GetEntityModelOutput.fromJS(item));
+            } else {
+                result200 = <any>null;
+            }
+            return Promise.resolve<GetEntityModelOutput[]>(result200);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<GetEntityModelOutput[]>(null as any);
+    }
+}
+
+export class EnumTypesServiceProxy extends ServiceProxyBase {
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    private instance: AxiosInstance;
+    private baseUrl: string;
+
+    constructor(baseUrl?: string, instance?: AxiosInstance) {
+        super();
+        this.instance = instance ? instance : axios.create();
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    /**
+     * 分页获取枚举
+     * @param body (optional)
+     * @return Success
+     */
+    page(body: PageEnumTypeInput | undefined, cancelToken?: CancelToken | undefined): Promise<PageEnumTypeOutputPagedResultDto> {
+        let url_ = this.baseUrl + "/EnumTypes/Page";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processPage(_response));
+        });
+    }
+
+    /**
+     * 分页获取枚举属性
+     * @param body (optional)
+     * @return Success
+     */
+    pageProperty(body: PageEnumTypePropertyInput | undefined, cancelToken?: CancelToken | undefined): Promise<PageEnumTypePropertyOutputPagedResultDto> {
+        let url_ = this.baseUrl + "/EnumTypes/PageProperty";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processPageProperty(_response));
+        });
+    }
+
+    /**
+     * 创建枚举
+     * @param body (optional)
+     * @return Success
+     */
+    createEnumType(body: CreateEnumTypeInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/EnumTypes/CreateEnumType";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processCreateEnumType(_response));
+        });
+    }
+
+    /**
+     * 更新枚举
+     * @param body (optional)
+     * @return Success
+     */
+    updateEnumType(body: UpdateEnumTypeInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/EnumTypes/UpdateEnumType";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processUpdateEnumType(_response));
+        });
+    }
+
+    /**
+     * 删除枚举
+     * @param body (optional)
+     * @return Success
+     */
+    deleteEnumType(body: DeleteEnumTypeInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/EnumTypes/DeleteEnumType";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processDeleteEnumType(_response));
+        });
+    }
+
+    /**
+     * 创建枚举属性
+     * @param body (optional)
+     * @return Success
+     */
+    createEnumTypeProperty(body: CreateEnumTypePropertyInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/EnumTypes/CreateEnumTypeProperty";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processCreateEnumTypeProperty(_response));
+        });
+    }
+
+    /**
+     * 更新枚举属性
+     * @param body (optional)
+     * @return Success
+     */
+    updateEnumTypeProperty(body: UpdateEnumTypePropertyInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/EnumTypes/UpdateEnumTypeProperty";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processUpdateEnumTypeProperty(_response));
+        });
+    }
+
+    /**
+     * 删除枚举属性
+     * @param body (optional)
+     * @return Success
+     */
+    deleteEnumTypeProperty(body: DeleteEnumTypePropertyInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/EnumTypes/DeleteEnumTypeProperty";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processDeleteEnumTypeProperty(_response));
+        });
+    }
+
+    protected processPage(response: AxiosResponse): Promise<PageEnumTypeOutputPagedResultDto> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200 = _responseText;
+            result200 = PageEnumTypeOutputPagedResultDto.fromJS(resultData200);
+            return Promise.resolve<PageEnumTypeOutputPagedResultDto>(result200);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<PageEnumTypeOutputPagedResultDto>(null as any);
+    }
+
+    protected processPageProperty(response: AxiosResponse): Promise<PageEnumTypePropertyOutputPagedResultDto> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200 = _responseText;
+            result200 = PageEnumTypePropertyOutputPagedResultDto.fromJS(resultData200);
+            return Promise.resolve<PageEnumTypePropertyOutputPagedResultDto>(result200);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<PageEnumTypePropertyOutputPagedResultDto>(null as any);
+    }
+
+    protected processCreateEnumType(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processUpdateEnumType(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processDeleteEnumType(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processCreateEnumTypeProperty(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processUpdateEnumTypeProperty(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processDeleteEnumTypeProperty(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+}
+
 export class FeaturesServiceProxy extends ServiceProxyBase {
     private instance: AxiosInstance;
     private baseUrl: string;
@@ -1775,6 +3896,236 @@ export class FeaturesServiceProxy extends ServiceProxyBase {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
         return Promise.resolve<void>(null as any);
+    }
+}
+
+export class GeneratorServiceProxy extends ServiceProxyBase {
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    private instance: AxiosInstance;
+    private baseUrl: string;
+
+    constructor(baseUrl?: string, instance?: AxiosInstance) {
+        super();
+        this.instance = instance ? instance : axios.create();
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    /**
+     * 预览
+     * @param body (optional)
+     * @return Success
+     */
+    preViewCode(body: PreViewCodeInput | undefined, cancelToken?: CancelToken | undefined): Promise<TemplateTreeDto[]> {
+        let url_ = this.baseUrl + "/Generator/PreViewCode";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processPreViewCode(_response));
+        });
+    }
+
+    /**
+     * 下载
+     * @param body (optional)
+     * @return Success
+     */
+    down(body: DownCodeInput | undefined, cancelToken?: CancelToken | undefined): Promise<FileResponse> {
+        let url_ = this.baseUrl + "/Generator/Down";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            responseType: "blob",
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processDown(_response));
+        });
+    }
+
+    protected processPreViewCode(response: AxiosResponse): Promise<TemplateTreeDto[]> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200 = _responseText;
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(TemplateTreeDto.fromJS(item));
+            } else {
+                result200 = <any>null;
+            }
+            return Promise.resolve<TemplateTreeDto[]>(result200);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<TemplateTreeDto[]>(null as any);
+    }
+
+    protected processDown(response: AxiosResponse): Promise<FileResponse> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200 || status === 206) {
+            const contentDisposition = response.headers ? response.headers["content-disposition"] : undefined;
+            let fileNameMatch = contentDisposition ? /filename\*=(?:(\\?['"])(.*?)\1|(?:[^\s]+'.*?')?([^;\n]*))/g.exec(contentDisposition) : undefined;
+            let fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[3] || fileNameMatch[2] : undefined;
+            if (fileName) {
+                fileName = decodeURIComponent(fileName);
+            } else {
+                fileNameMatch = contentDisposition ? /filename="?([^"]*?)"?(;|$)/g.exec(contentDisposition) : undefined;
+                fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[1] : undefined;
+            }
+            return Promise.resolve({
+                fileName: fileName,
+                status: status,
+                data: new Blob([response.data], {type: response.headers["content-type"]}),
+                headers: _headers
+            });
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<FileResponse>(null as any);
     }
 }
 
@@ -2917,7 +5268,7 @@ export class NotificationServiceProxy extends ServiceProxyBase {
     }
 
     /**
-     * 分页获取文本消息
+     * 分页查询消息
      * @param body (optional) 
      * @return Success
      */
@@ -3789,6 +6140,197 @@ export class NotificationServiceProxy extends ServiceProxyBase {
             let resultData500  = _responseText;
             result500 = RemoteServiceErrorResponse.fromJS(resultData500);
             return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+}
+
+export class OrganizationServiceProxy extends ServiceProxyBase {
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    private instance: AxiosInstance;
+    private baseUrl: string;
+
+    constructor(baseUrl?: string, instance?: AxiosInstance) {
+        super();
+        this.instance = instance ? instance : axios.create();
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    /**
+     * @return Success
+     */
+    getAllChildrenOrg(parentId: string, cancelToken?: CancelToken | undefined): Promise<OrganizationUnitDto[]> {
+        let url_ = this.baseUrl + "/api/organization/get-all-children-org/{parentId}";
+        if (parentId === undefined || parentId === null)
+            throw new Error("The parameter 'parentId' must be defined.");
+        url_ = url_.replace("{parentId}", encodeURIComponent("" + parentId));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = <AxiosRequestConfig>{
+            method: "GET",
+            url: url_,
+            headers: {
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processGetAllChildrenOrg(_response));
+        });
+    }
+
+    /**
+     * @param organization (optional)
+     * @param body (optional)
+     * @return Success
+     */
+    grantPermissionsForDepartment(organization: string | undefined, body: string[] | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/api/organization/grant-permissions-for-department?";
+        if (organization === null)
+            throw new Error("The parameter 'organization' cannot be null.");
+        else if (organization !== undefined)
+            url_ += "organization=" + encodeURIComponent("" + organization) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "PUT",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processGrantPermissionsForDepartment(_response));
+        });
+    }
+
+    /**
+     * @param organization (optional)
+     * @param permissionName (optional)
+     * @return Success
+     */
+    grantPermissionForDepartment(organization: string | undefined, permissionName: string | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/api/organization/grant-permission-for-department?";
+        if (organization === null)
+            throw new Error("The parameter 'organization' cannot be null.");
+        else if (organization !== undefined)
+            url_ += "organization=" + encodeURIComponent("" + organization) + "&";
+        if (permissionName === null)
+            throw new Error("The parameter 'permissionName' cannot be null.");
+        else if (permissionName !== undefined)
+            url_ += "permissionName=" + encodeURIComponent("" + permissionName) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = <AxiosRequestConfig>{
+            method: "PUT",
+            url: url_,
+            headers: {},
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processGrantPermissionForDepartment(_response));
+        });
+    }
+
+    protected processGetAllChildrenOrg(response: AxiosResponse): Promise<OrganizationUnitDto[]> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200 = _responseText;
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(OrganizationUnitDto.fromJS(item));
+            } else {
+                result200 = <any>null;
+            }
+            return Promise.resolve<OrganizationUnitDto[]>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<OrganizationUnitDto[]>(null as any);
+    }
+
+    protected processGrantPermissionsForDepartment(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processGrantPermissionForDepartment(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
@@ -5206,6 +7748,512 @@ export class PermissionsServiceProxy extends ServiceProxyBase {
     }
 }
 
+export class ProjectsServiceProxy extends ServiceProxyBase {
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    private instance: AxiosInstance;
+    private baseUrl: string;
+
+    constructor(baseUrl?: string, instance?: AxiosInstance) {
+        super();
+        this.instance = instance ? instance : axios.create();
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    /**
+     * 获取所有项目
+     * @return Success
+     */
+    all(cancelToken?: CancelToken | undefined): Promise<ProjectDto[]> {
+        let url_ = this.baseUrl + "/Projects/All";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = <AxiosRequestConfig>{
+            method: "POST",
+            url: url_,
+            headers: {
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processAll(_response));
+        });
+    }
+
+    /**
+     * 分页获取项目
+     * @param body (optional)
+     * @return Success
+     */
+    page(body: PageProjectInput | undefined, cancelToken?: CancelToken | undefined): Promise<ProjectDtoPagedResultDto> {
+        let url_ = this.baseUrl + "/Projects/Page";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processPage(_response));
+        });
+    }
+
+    /**
+     * 创建项目
+     * @param body (optional)
+     * @return Success
+     */
+    create(body: CreateProjectInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/Projects/Create";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processCreate(_response));
+        });
+    }
+
+    /**
+     * 更新项目
+     * @param body (optional)
+     * @return Success
+     */
+    update(body: UpdateProjectInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/Projects/Update";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processUpdate(_response));
+        });
+    }
+
+    /**
+     * 删除项目
+     * @param body (optional)
+     * @return Success
+     */
+    delete(body: DeleteProjectInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/Projects/Delete";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processDelete(_response));
+        });
+    }
+
+    protected processAll(response: AxiosResponse): Promise<ProjectDto[]> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200 = _responseText;
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(ProjectDto.fromJS(item));
+            } else {
+                result200 = <any>null;
+            }
+            return Promise.resolve<ProjectDto[]>(result200);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<ProjectDto[]>(null as any);
+    }
+
+    protected processPage(response: AxiosResponse): Promise<ProjectDtoPagedResultDto> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200 = _responseText;
+            result200 = ProjectDtoPagedResultDto.fromJS(resultData200);
+            return Promise.resolve<ProjectDtoPagedResultDto>(result200);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<ProjectDtoPagedResultDto>(null as any);
+    }
+
+    protected processCreate(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processUpdate(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processDelete(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+}
+
 export class RolesServiceProxy extends ServiceProxyBase {
     private instance: AxiosInstance;
     private baseUrl: string;
@@ -5879,42 +8927,1446 @@ export class SettingsServiceProxy extends ServiceProxyBase {
         } else if (status === 403) {
             const _responseText = response.data;
             let result403: any = null;
-            let resultData403  = _responseText;
+            let resultData403 = _responseText;
             result403 = RemoteServiceErrorResponse.fromJS(resultData403);
             return throwException("Forbidden", status, _responseText, _headers, result403);
 
         } else if (status === 401) {
             const _responseText = response.data;
             let result401: any = null;
-            let resultData401  = _responseText;
+            let resultData401 = _responseText;
             result401 = RemoteServiceErrorResponse.fromJS(resultData401);
             return throwException("Unauthorized", status, _responseText, _headers, result401);
 
         } else if (status === 400) {
             const _responseText = response.data;
             let result400: any = null;
-            let resultData400  = _responseText;
+            let resultData400 = _responseText;
             result400 = RemoteServiceErrorResponse.fromJS(resultData400);
             return throwException("Bad Request", status, _responseText, _headers, result400);
 
         } else if (status === 404) {
             const _responseText = response.data;
             let result404: any = null;
-            let resultData404  = _responseText;
+            let resultData404 = _responseText;
             result404 = RemoteServiceErrorResponse.fromJS(resultData404);
             return throwException("Not Found", status, _responseText, _headers, result404);
 
         } else if (status === 501) {
             const _responseText = response.data;
             let result501: any = null;
-            let resultData501  = _responseText;
+            let resultData501 = _responseText;
             result501 = RemoteServiceErrorResponse.fromJS(resultData501);
             return throwException("Server Error", status, _responseText, _headers, result501);
 
         } else if (status === 500) {
             const _responseText = response.data;
             let result500: any = null;
-            let resultData500  = _responseText;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+}
+
+export class TemplatesServiceProxy extends ServiceProxyBase {
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    private instance: AxiosInstance;
+    private baseUrl: string;
+
+    constructor(baseUrl?: string, instance?: AxiosInstance) {
+        super();
+        this.instance = instance ? instance : axios.create();
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    /**
+     * 获取所有模板组
+     * @return Success
+     */
+    all(cancelToken?: CancelToken | undefined): Promise<TemplateDto[]> {
+        let url_ = this.baseUrl + "/Templates/All";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = <AxiosRequestConfig>{
+            method: "POST",
+            url: url_,
+            headers: {
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processAll(_response));
+        });
+    }
+
+    /**
+     * 分页获取模板组
+     * @param body (optional)
+     * @return Success
+     */
+    page(body: PageTemplateInput | undefined, cancelToken?: CancelToken | undefined): Promise<TemplateDtoPagedResultDto> {
+        let url_ = this.baseUrl + "/Templates/Page";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processPage(_response));
+        });
+    }
+
+    /**
+     * 创建模板组
+     * @param body (optional)
+     * @return Success
+     */
+    create(body: CreateTemplateInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/Templates/Create";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processCreate(_response));
+        });
+    }
+
+    /**
+     * 更新模板组
+     * @param body (optional)
+     * @return Success
+     */
+    update(body: UpdateTemplateInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/Templates/Update";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processUpdate(_response));
+        });
+    }
+
+    /**
+     * 删除模板组
+     * @param body (optional)
+     * @return Success
+     */
+    delete(body: DeleteTemplateInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/Templates/Delete";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processDelete(_response));
+        });
+    }
+
+    /**
+     * 创建模板
+     * @param body (optional)
+     * @return Success
+     */
+    createDetail(body: CreateTemplateDetailInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/Templates/CreateDetail";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processCreateDetail(_response));
+        });
+    }
+
+    /**
+     * 编辑模板
+     * @param body (optional)
+     * @return Success
+     */
+    updateDetail(body: UpdateTemplateDetailInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/Templates/UpdateDetail";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processUpdateDetail(_response));
+        });
+    }
+
+    /**
+     * 编辑模板
+     * @param body (optional)
+     * @return Success
+     */
+    updateDetailContent(body: UpdateTemplateDetailContentInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/Templates/UpdateDetailContent";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processUpdateDetailContent(_response));
+        });
+    }
+
+    /**
+     * 删除模板
+     * @param body (optional)
+     * @return Success
+     */
+    deleteDetail(body: DeleteTemplateDetailInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/Templates/DeleteDetail";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processDeleteDetail(_response));
+        });
+    }
+
+    /**
+     * 获取模板树形结构
+     * @param body (optional)
+     * @return Success
+     */
+    tree(body: GetTemplteTreeInput | undefined, cancelToken?: CancelToken | undefined): Promise<GetTemplateTreeOutput[]> {
+        let url_ = this.baseUrl + "/Templates/Tree";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processTree(_response));
+        });
+    }
+
+    /**
+     * 获取所有模板
+     * @return Success
+     */
+    list(cancelToken?: CancelToken | undefined): Promise<TemplateDto[]> {
+        let url_ = this.baseUrl + "/Templates/List";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = <AxiosRequestConfig>{
+            method: "POST",
+            url: url_,
+            headers: {
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processList(_response));
+        });
+    }
+
+    /**
+     * 获取模板策略
+     * @return Success
+     */
+    controlType(cancelToken?: CancelToken | undefined): Promise<StringInt32KeyValuePair[]> {
+        let url_ = this.baseUrl + "/Templates/ControlType";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = <AxiosRequestConfig>{
+            method: "POST",
+            url: url_,
+            headers: {
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processControlType(_response));
+        });
+    }
+
+    /**
+     * 获取模板类型
+     * @return Success
+     */
+    templateType(cancelToken?: CancelToken | undefined): Promise<StringInt32KeyValuePair[]> {
+        let url_ = this.baseUrl + "/Templates/TemplateType";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = <AxiosRequestConfig>{
+            method: "POST",
+            url: url_,
+            headers: {
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processTemplateType(_response));
+        });
+    }
+
+    /**
+     * 复制模板
+     * @param body (optional)
+     * @return Success
+     */
+    copy(body: CopyTemplateInput | undefined, cancelToken?: CancelToken | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/Templates/Copy";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cancelToken
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.instance.request(transformedOptions_);
+        }).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.transformResult(url_, _response, (_response: AxiosResponse) => this.processCopy(_response));
+        });
+    }
+
+    protected processAll(response: AxiosResponse): Promise<TemplateDto[]> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200 = _responseText;
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(TemplateDto.fromJS(item));
+            } else {
+                result200 = <any>null;
+            }
+            return Promise.resolve<TemplateDto[]>(result200);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<TemplateDto[]>(null as any);
+    }
+
+    protected processPage(response: AxiosResponse): Promise<TemplateDtoPagedResultDto> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200 = _responseText;
+            result200 = TemplateDtoPagedResultDto.fromJS(resultData200);
+            return Promise.resolve<TemplateDtoPagedResultDto>(result200);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<TemplateDtoPagedResultDto>(null as any);
+    }
+
+    protected processCreate(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processUpdate(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processDelete(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processCreateDetail(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processUpdateDetail(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processUpdateDetailContent(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processDeleteDetail(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    protected processTree(response: AxiosResponse): Promise<GetTemplateTreeOutput[]> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200 = _responseText;
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(GetTemplateTreeOutput.fromJS(item));
+            } else {
+                result200 = <any>null;
+            }
+            return Promise.resolve<GetTemplateTreeOutput[]>(result200);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<GetTemplateTreeOutput[]>(null as any);
+    }
+
+    protected processList(response: AxiosResponse): Promise<TemplateDto[]> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200 = _responseText;
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(TemplateDto.fromJS(item));
+            } else {
+                result200 = <any>null;
+            }
+            return Promise.resolve<TemplateDto[]>(result200);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<TemplateDto[]>(null as any);
+    }
+
+    protected processControlType(response: AxiosResponse): Promise<StringInt32KeyValuePair[]> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200 = _responseText;
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(StringInt32KeyValuePair.fromJS(item));
+            } else {
+                result200 = <any>null;
+            }
+            return Promise.resolve<StringInt32KeyValuePair[]>(result200);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<StringInt32KeyValuePair[]>(null as any);
+    }
+
+    protected processTemplateType(response: AxiosResponse): Promise<StringInt32KeyValuePair[]> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200 = _responseText;
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(StringInt32KeyValuePair.fromJS(item));
+            } else {
+                result200 = <any>null;
+            }
+            return Promise.resolve<StringInt32KeyValuePair[]>(result200);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
+            result500 = RemoteServiceErrorResponse.fromJS(resultData500);
+            return throwException("Server Error", status, _responseText, _headers, result500);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<StringInt32KeyValuePair[]>(null as any);
+    }
+
+    protected processCopy(response: AxiosResponse): Promise<void> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            return Promise.resolve<void>(null as any);
+
+        } else if (status === 403) {
+            const _responseText = response.data;
+            let result403: any = null;
+            let resultData403 = _responseText;
+            result403 = RemoteServiceErrorResponse.fromJS(resultData403);
+            return throwException("Forbidden", status, _responseText, _headers, result403);
+
+        } else if (status === 401) {
+            const _responseText = response.data;
+            let result401: any = null;
+            let resultData401 = _responseText;
+            result401 = RemoteServiceErrorResponse.fromJS(resultData401);
+            return throwException("Unauthorized", status, _responseText, _headers, result401);
+
+        } else if (status === 400) {
+            const _responseText = response.data;
+            let result400: any = null;
+            let resultData400 = _responseText;
+            result400 = RemoteServiceErrorResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+
+        } else if (status === 404) {
+            const _responseText = response.data;
+            let result404: any = null;
+            let resultData404 = _responseText;
+            result404 = RemoteServiceErrorResponse.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+
+        } else if (status === 501) {
+            const _responseText = response.data;
+            let result501: any = null;
+            let resultData501 = _responseText;
+            result501 = RemoteServiceErrorResponse.fromJS(resultData501);
+            return throwException("Server Error", status, _responseText, _headers, result501);
+
+        } else if (status === 500) {
+            const _responseText = response.data;
+            let result500: any = null;
+            let resultData500 = _responseText;
             result500 = RemoteServiceErrorResponse.fromJS(resultData500);
             return throwException("Server Error", status, _responseText, _headers, result500);
 
@@ -7797,11 +12249,8 @@ export interface IActionApiDescriptionModel {
 }
 
 export class AddOrUpdateConnectionStringInput implements IAddOrUpdateConnectionStringInput {
-    /** id */
     id!: string;
-    /** 连接字符串名称 */
     name!: string | undefined;
-    /** 连接字符串地址 */
     value!: string | undefined;
 
     constructor(data?: IAddOrUpdateConnectionStringInput) {
@@ -7838,11 +12287,8 @@ export class AddOrUpdateConnectionStringInput implements IAddOrUpdateConnectionS
 }
 
 export interface IAddOrUpdateConnectionStringInput {
-    /** id */
     id: string;
-    /** 连接字符串名称 */
     name: string | undefined;
-    /** 连接字符串地址 */
     value: string | undefined;
 }
 
@@ -8400,6 +12846,7 @@ export interface IApplicationLocalizationConfigurationDto {
 
 export class ApplicationLocalizationDto implements IApplicationLocalizationDto {
     resources!: { [key: string]: ApplicationLocalizationResourceDto; } | undefined;
+    currentCulture!: CurrentCultureDto;
 
     constructor(data?: IApplicationLocalizationDto) {
         if (data) {
@@ -8419,6 +12866,7 @@ export class ApplicationLocalizationDto implements IApplicationLocalizationDto {
                         (<any>this.resources)![key] = _data["resources"][key] ? ApplicationLocalizationResourceDto.fromJS(_data["resources"][key]) : new ApplicationLocalizationResourceDto();
                 }
             }
+            this.currentCulture = _data["currentCulture"] ? CurrentCultureDto.fromJS(_data["currentCulture"]) : <any>undefined;
         }
     }
 
@@ -8438,12 +12886,14 @@ export class ApplicationLocalizationDto implements IApplicationLocalizationDto {
                     (<any>data["resources"])[key] = this.resources[key] ? this.resources[key].toJSON() : <any>undefined;
             }
         }
+        data["currentCulture"] = this.currentCulture ? this.currentCulture.toJSON() : <any>undefined;
         return data;
     }
 }
 
 export interface IApplicationLocalizationDto {
     resources: { [key: string]: ApplicationLocalizationResourceDto; } | undefined;
+    currentCulture: CurrentCultureDto;
 }
 
 export class ApplicationLocalizationResourceDto implements IApplicationLocalizationResourceDto {
@@ -8630,6 +13080,13 @@ export interface IClockDto {
     kind: string | undefined;
 }
 
+export enum ControlType {
+    Aggregate = 10,
+    Entity = 20,
+    Enum = 30,
+    Global = 40,
+}
+
 export class ControllerApiDescriptionModel implements IControllerApiDescriptionModel {
     controllerName!: string | undefined;
     controllerGroupName!: string | undefined;
@@ -8766,6 +13223,94 @@ export interface IControllerInterfaceApiDescriptionModel {
     methods: InterfaceMethodApiDescriptionModel[] | undefined;
 }
 
+export class CopyTemplateInput implements ICopyTemplateInput {
+    id!: string;
+    name!: string | undefined;
+    remark!: string | undefined;
+
+    constructor(data?: ICopyTemplateInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): CopyTemplateInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new CopyTemplateInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            this.remark = _data["remark"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["remark"] = this.remark;
+        return data;
+    }
+}
+
+export interface ICopyTemplateInput {
+    id: string;
+    name: string | undefined;
+    remark: string | undefined;
+}
+
+export class CreateAggregateInput implements ICreateAggregateInput {
+    projectId!: string;
+    code!: string;
+    description!: string;
+
+    constructor(data?: ICreateAggregateInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): CreateAggregateInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateAggregateInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.projectId = _data["projectId"];
+            this.code = _data["code"];
+            this.description = _data["description"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["projectId"] = this.projectId;
+        data["code"] = this.code;
+        data["description"] = this.description;
+        return data;
+    }
+}
+
+export interface ICreateAggregateInput {
+    projectId: string;
+    code: string;
+    description: string;
+}
+
 export class CreateDataDictinaryDetailInput implements ICreateDataDictinaryDetailInput {
     id!: string;
     code!: string | undefined;
@@ -8862,17 +13407,239 @@ export interface ICreateDataDictinaryInput {
     description: string | undefined;
 }
 
-/** 创建语言 */
+export class CreateEntityModelInput implements ICreateEntityModelInput {
+    id!: string;
+    code!: string;
+    description!: string;
+    relationalType!: RelationalType;
+
+    constructor(data?: ICreateEntityModelInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): CreateEntityModelInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateEntityModelInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.code = _data["code"];
+            this.description = _data["description"];
+            this.relationalType = _data["relationalType"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["code"] = this.code;
+        data["description"] = this.description;
+        data["relationalType"] = this.relationalType;
+        return data;
+    }
+}
+
+export interface ICreateEntityModelInput {
+    id: string;
+    code: string;
+    description: string;
+    relationalType: RelationalType;
+}
+
+export class CreateEntityModelPropertyInput implements ICreateEntityModelPropertyInput {
+    id!: string;
+    code!: string;
+    description!: string;
+    isRequired!: boolean;
+    maxLength!: number | undefined;
+    minLength!: number | undefined;
+    decimalPrecision!: number | undefined;
+    decimalScale!: number | undefined;
+    enumTypeId!: string | undefined;
+    dataTypeId!: string | undefined;
+    allowSearch!: boolean;
+    allowAdd!: boolean;
+    allowEdit!: boolean;
+
+    constructor(data?: ICreateEntityModelPropertyInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): CreateEntityModelPropertyInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateEntityModelPropertyInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.code = _data["code"];
+            this.description = _data["description"];
+            this.isRequired = _data["isRequired"];
+            this.maxLength = _data["maxLength"];
+            this.minLength = _data["minLength"];
+            this.decimalPrecision = _data["decimalPrecision"];
+            this.decimalScale = _data["decimalScale"];
+            this.enumTypeId = _data["enumTypeId"];
+            this.dataTypeId = _data["dataTypeId"];
+            this.allowSearch = _data["allowSearch"];
+            this.allowAdd = _data["allowAdd"];
+            this.allowEdit = _data["allowEdit"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["code"] = this.code;
+        data["description"] = this.description;
+        data["isRequired"] = this.isRequired;
+        data["maxLength"] = this.maxLength;
+        data["minLength"] = this.minLength;
+        data["decimalPrecision"] = this.decimalPrecision;
+        data["decimalScale"] = this.decimalScale;
+        data["enumTypeId"] = this.enumTypeId;
+        data["dataTypeId"] = this.dataTypeId;
+        data["allowSearch"] = this.allowSearch;
+        data["allowAdd"] = this.allowAdd;
+        data["allowEdit"] = this.allowEdit;
+        return data;
+    }
+}
+
+export interface ICreateEntityModelPropertyInput {
+    id: string;
+    code: string;
+    description: string;
+    isRequired: boolean;
+    maxLength: number | undefined;
+    minLength: number | undefined;
+    decimalPrecision: number | undefined;
+    decimalScale: number | undefined;
+    enumTypeId: string | undefined;
+    dataTypeId: string | undefined;
+    allowSearch: boolean;
+    allowAdd: boolean;
+    allowEdit: boolean;
+}
+
+export class CreateEnumTypeInput implements ICreateEnumTypeInput {
+    code!: string;
+    description!: string;
+    entityModelId!: string;
+    projectId!: string;
+
+    constructor(data?: ICreateEnumTypeInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): CreateEnumTypeInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateEnumTypeInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.code = _data["code"];
+            this.description = _data["description"];
+            this.entityModelId = _data["entityModelId"];
+            this.projectId = _data["projectId"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["code"] = this.code;
+        data["description"] = this.description;
+        data["entityModelId"] = this.entityModelId;
+        data["projectId"] = this.projectId;
+        return data;
+    }
+}
+
+export interface ICreateEnumTypeInput {
+    code: string;
+    description: string;
+    entityModelId: string;
+    projectId: string;
+}
+
+export class CreateEnumTypePropertyInput implements ICreateEnumTypePropertyInput {
+    enumTypeId!: string;
+    code!: string;
+    value!: number;
+    description!: string;
+
+    constructor(data?: ICreateEnumTypePropertyInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): CreateEnumTypePropertyInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateEnumTypePropertyInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.enumTypeId = _data["enumTypeId"];
+            this.code = _data["code"];
+            this.value = _data["value"];
+            this.description = _data["description"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["enumTypeId"] = this.enumTypeId;
+        data["code"] = this.code;
+        data["value"] = this.value;
+        data["description"] = this.description;
+        return data;
+    }
+}
+
+export interface ICreateEnumTypePropertyInput {
+    enumTypeId: string;
+    code: string;
+    value: number;
+    description: string;
+}
+
 export class CreateLanguageInput implements ICreateLanguageInput {
-    /** 语言名称 */
     cultureName!: string | undefined;
-    /** Ui语言名称 */
     uiCultureName!: string | undefined;
-    /** 显示名称 */
     displayName!: string | undefined;
-    /** 图标 */
     flagIcon!: string | undefined;
-    /** 是否启用 */
     isEnabled!: boolean;
 
     constructor(data?: ICreateLanguageInput) {
@@ -8912,29 +13679,18 @@ export class CreateLanguageInput implements ICreateLanguageInput {
     }
 }
 
-/** 创建语言 */
 export interface ICreateLanguageInput {
-    /** 语言名称 */
     cultureName: string | undefined;
-    /** Ui语言名称 */
     uiCultureName: string | undefined;
-    /** 显示名称 */
     displayName: string | undefined;
-    /** 图标 */
     flagIcon: string | undefined;
-    /** 是否启用 */
     isEnabled: boolean;
 }
 
-/** 创建语言文本 */
 export class CreateLanguageTextInput implements ICreateLanguageTextInput {
-    /** 资源名称 */
     resourceName!: string | undefined;
-    /** 语言名称 */
     cultureName!: string | undefined;
-    /** 名称 */
     name!: string | undefined;
-    /** 值 */
     value!: string | undefined;
 
     constructor(data?: ICreateLanguageTextInput) {
@@ -8972,15 +13728,10 @@ export class CreateLanguageTextInput implements ICreateLanguageTextInput {
     }
 }
 
-/** 创建语言文本 */
 export interface ICreateLanguageTextInput {
-    /** 资源名称 */
     resourceName: string | undefined;
-    /** 语言名称 */
     cultureName: string | undefined;
-    /** 名称 */
     name: string | undefined;
-    /** 值 */
     value: string | undefined;
 }
 
@@ -9022,6 +13773,158 @@ export class CreateOrganizationUnitInput implements ICreateOrganizationUnitInput
 export interface ICreateOrganizationUnitInput {
     displayName: string | undefined;
     parentId: string | undefined;
+}
+
+export class CreateProjectInput implements ICreateProjectInput {
+    owner!: string | undefined;
+    companyName!: string | undefined;
+    projectName!: string | undefined;
+    remark!: string | undefined;
+    supportTenant!: boolean;
+
+    constructor(data?: ICreateProjectInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): CreateProjectInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateProjectInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.owner = _data["owner"];
+            this.companyName = _data["companyName"];
+            this.projectName = _data["projectName"];
+            this.remark = _data["remark"];
+            this.supportTenant = _data["supportTenant"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["owner"] = this.owner;
+        data["companyName"] = this.companyName;
+        data["projectName"] = this.projectName;
+        data["remark"] = this.remark;
+        data["supportTenant"] = this.supportTenant;
+        return data;
+    }
+}
+
+export interface ICreateProjectInput {
+    owner: string | undefined;
+    companyName: string | undefined;
+    projectName: string | undefined;
+    remark: string | undefined;
+    supportTenant: boolean;
+}
+
+export class CreateTemplateDetailInput implements ICreateTemplateDetailInput {
+    templateId!: string;
+    parentId!: string | undefined;
+    templateType!: TemplateType;
+    controlType!: ControlType;
+    name!: string | undefined;
+    description!: string | undefined;
+    content!: string | undefined;
+
+    constructor(data?: ICreateTemplateDetailInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): CreateTemplateDetailInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateTemplateDetailInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.templateId = _data["templateId"];
+            this.parentId = _data["parentId"];
+            this.templateType = _data["templateType"];
+            this.controlType = _data["controlType"];
+            this.name = _data["name"];
+            this.description = _data["description"];
+            this.content = _data["content"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["templateId"] = this.templateId;
+        data["parentId"] = this.parentId;
+        data["templateType"] = this.templateType;
+        data["controlType"] = this.controlType;
+        data["name"] = this.name;
+        data["description"] = this.description;
+        data["content"] = this.content;
+        return data;
+    }
+}
+
+export interface ICreateTemplateDetailInput {
+    templateId: string;
+    parentId: string | undefined;
+    templateType: TemplateType;
+    controlType: ControlType;
+    name: string | undefined;
+    description: string | undefined;
+    content: string | undefined;
+}
+
+export class CreateTemplateInput implements ICreateTemplateInput {
+    name!: string | undefined;
+    remark!: string | undefined;
+
+    constructor(data?: ICreateTemplateInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): CreateTemplateInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateTemplateInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.name = _data["name"];
+            this.remark = _data["remark"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["name"] = this.name;
+        data["remark"] = this.remark;
+        return data;
+    }
+}
+
+export interface ICreateTemplateInput {
+    name: string | undefined;
+    remark: string | undefined;
 }
 
 export class CurrentCultureDto implements ICurrentCultureDto {
@@ -9152,6 +14055,7 @@ export class CurrentUserDto implements ICurrentUserDto {
     phoneNumber!: string | undefined;
     phoneNumberVerified!: boolean;
     roles!: string[] | undefined;
+    sessionId!: string | undefined;
 
     constructor(data?: ICurrentUserDto) {
         if (data) {
@@ -9183,6 +14087,7 @@ export class CurrentUserDto implements ICurrentUserDto {
                 for (let item of _data["roles"])
                     this.roles!.push(item);
             }
+            this.sessionId = _data["sessionId"];
         }
     }
 
@@ -9214,6 +14119,7 @@ export class CurrentUserDto implements ICurrentUserDto {
             for (let item of this.roles)
                 data["roles"].push(item);
         }
+        data["sessionId"] = this.sessionId;
         return data;
     }
 }
@@ -9234,6 +14140,55 @@ export interface ICurrentUserDto {
     phoneNumber: string | undefined;
     phoneNumberVerified: boolean;
     roles: string[] | undefined;
+    sessionId: string | undefined;
+}
+
+export class DataTypeDto implements IDataTypeDto {
+    id!: string;
+    code!: string | undefined;
+    description!: string | undefined;
+    isEnum!: boolean;
+
+    constructor(data?: IDataTypeDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): DataTypeDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new DataTypeDto();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.code = _data["code"];
+            this.description = _data["description"];
+            this.isEnum = _data["isEnum"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["code"] = this.code;
+        data["description"] = this.description;
+        data["isEnum"] = this.isEnum;
+        return data;
+    }
+}
+
+export interface IDataTypeDto {
+    id: string;
+    code: string | undefined;
+    description: string | undefined;
+    isEnum: boolean;
 }
 
 export class DateTimeFormatDto implements IDateTimeFormatDto {
@@ -9296,10 +14251,44 @@ export interface IDateTimeFormatDto {
     longTimePattern: string | undefined;
 }
 
+export class DeleteAggregateInput implements IDeleteAggregateInput {
+    id!: string;
+
+    constructor(data?: IDeleteAggregateInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): DeleteAggregateInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new DeleteAggregateInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        return data;
+    }
+}
+
+export interface IDeleteAggregateInput {
+    id: string;
+}
+
 export class DeleteConnectionStringInput implements IDeleteConnectionStringInput {
-    /** 连接字符串名称 */
     name!: string | undefined;
-    /** 租户id */
     tenantId!: string;
 
     constructor(data?: IDeleteConnectionStringInput) {
@@ -9334,9 +14323,7 @@ export class DeleteConnectionStringInput implements IDeleteConnectionStringInput
 }
 
 export interface IDeleteConnectionStringInput {
-    /** 连接字符串名称 */
     name: string | undefined;
-    /** 租户id */
     tenantId: string;
 }
 
@@ -9380,6 +14367,166 @@ export interface IDeleteDataDictionaryDetailInput {
     dataDictionayDetailId: string;
 }
 
+export class DeleteEntityModelInput implements IDeleteEntityModelInput {
+    aggregateId!: string;
+    id!: string;
+
+    constructor(data?: IDeleteEntityModelInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): DeleteEntityModelInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new DeleteEntityModelInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.aggregateId = _data["aggregateId"];
+            this.id = _data["id"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["aggregateId"] = this.aggregateId;
+        data["id"] = this.id;
+        return data;
+    }
+}
+
+export interface IDeleteEntityModelInput {
+    aggregateId: string;
+    id: string;
+}
+
+export class DeleteEntityModelPropertyInput implements IDeleteEntityModelPropertyInput {
+    id!: string;
+    propertyId!: string;
+
+    constructor(data?: IDeleteEntityModelPropertyInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): DeleteEntityModelPropertyInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new DeleteEntityModelPropertyInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.propertyId = _data["propertyId"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["propertyId"] = this.propertyId;
+        return data;
+    }
+}
+
+export interface IDeleteEntityModelPropertyInput {
+    id: string;
+    propertyId: string;
+}
+
+export class DeleteEnumTypeInput implements IDeleteEnumTypeInput {
+    id!: string;
+    entityModelId!: string;
+
+    constructor(data?: IDeleteEnumTypeInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): DeleteEnumTypeInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new DeleteEnumTypeInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.entityModelId = _data["entityModelId"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["entityModelId"] = this.entityModelId;
+        return data;
+    }
+}
+
+export interface IDeleteEnumTypeInput {
+    id: string;
+    entityModelId: string;
+}
+
+export class DeleteEnumTypePropertyInput implements IDeleteEnumTypePropertyInput {
+    enumTypeId!: string;
+    id!: string;
+
+    constructor(data?: IDeleteEnumTypePropertyInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): DeleteEnumTypePropertyInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new DeleteEnumTypePropertyInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.enumTypeId = _data["enumTypeId"];
+            this.id = _data["id"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["enumTypeId"] = this.enumTypeId;
+        data["id"] = this.id;
+        return data;
+    }
+}
+
+export interface IDeleteEnumTypePropertyInput {
+    enumTypeId: string;
+    id: string;
+}
+
 export class DeleteFeatureInput implements IDeleteFeatureInput {
     providerName!: string | undefined;
     providerKey!: string | undefined;
@@ -9420,9 +14567,7 @@ export interface IDeleteFeatureInput {
     providerKey: string | undefined;
 }
 
-/** 删除语言 */
 export class DeleteLanguageInput implements IDeleteLanguageInput {
-    /** 语言Id */
     id!: string;
 
     constructor(data?: IDeleteLanguageInput) {
@@ -9454,10 +14599,160 @@ export class DeleteLanguageInput implements IDeleteLanguageInput {
     }
 }
 
-/** 删除语言 */
 export interface IDeleteLanguageInput {
-    /** 语言Id */
     id: string;
+}
+
+export class DeleteProjectInput implements IDeleteProjectInput {
+    id!: string;
+
+    constructor(data?: IDeleteProjectInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): DeleteProjectInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new DeleteProjectInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        return data;
+    }
+}
+
+export interface IDeleteProjectInput {
+    id: string;
+}
+
+export class DeleteTemplateDetailInput implements IDeleteTemplateDetailInput {
+    templateId!: string;
+    templateDetailId!: string;
+
+    constructor(data?: IDeleteTemplateDetailInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): DeleteTemplateDetailInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new DeleteTemplateDetailInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.templateId = _data["templateId"];
+            this.templateDetailId = _data["templateDetailId"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["templateId"] = this.templateId;
+        data["templateDetailId"] = this.templateDetailId;
+        return data;
+    }
+}
+
+export interface IDeleteTemplateDetailInput {
+    templateId: string;
+    templateDetailId: string;
+}
+
+export class DeleteTemplateInput implements IDeleteTemplateInput {
+    id!: string;
+
+    constructor(data?: IDeleteTemplateInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): DeleteTemplateInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new DeleteTemplateInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        return data;
+    }
+}
+
+export interface IDeleteTemplateInput {
+    id: string;
+}
+
+export class DownCodeInput implements IDownCodeInput {
+    templateId!: string;
+    projectId!: string;
+
+    constructor(data?: IDownCodeInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): DownCodeInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new DownCodeInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.templateId = _data["templateId"];
+            this.projectId = _data["projectId"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["templateId"] = this.templateId;
+        data["projectId"] = this.projectId;
+        return data;
+    }
+}
+
+export interface IDownCodeInput {
+    templateId: string;
+    projectId: string;
 }
 
 export enum EntityChangeType {
@@ -11358,6 +16653,434 @@ export interface IFindTenantResultDto {
     isActive: boolean;
 }
 
+export class GetDataTypeInput implements IGetDataTypeInput {
+    entityModelId!: string;
+
+    constructor(data?: IGetDataTypeInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): GetDataTypeInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetDataTypeInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.entityModelId = _data["entityModelId"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["entityModelId"] = this.entityModelId;
+        return data;
+    }
+}
+
+export interface IGetDataTypeInput {
+    entityModelId: string;
+}
+
+export class GetDataTypeOutput implements IGetDataTypeOutput {
+    id!: string;
+    code!: string | undefined;
+    description!: string | undefined;
+
+    constructor(data?: IGetDataTypeOutput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): GetDataTypeOutput {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetDataTypeOutput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.code = _data["code"];
+            this.description = _data["description"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["code"] = this.code;
+        data["description"] = this.description;
+        return data;
+    }
+}
+
+export interface IGetDataTypeOutput {
+    id: string;
+    code: string | undefined;
+    description: string | undefined;
+}
+
+export class GetEntityModelInput implements IGetEntityModelInput {
+    id!: string;
+
+    constructor(data?: IGetEntityModelInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): GetEntityModelInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetEntityModelInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        return data;
+    }
+}
+
+export interface IGetEntityModelInput {
+    id: string;
+}
+
+export class GetEntityModelOutput implements IGetEntityModelOutput {
+    id!: string;
+    code!: string | undefined;
+    description!: string | undefined;
+    relationalType!: RelationalType;
+    entityModelProperties!: GetEntityModelPropertyOutput[] | undefined;
+    entityModelOutputs!: GetEntityModelOutput[] | undefined;
+
+    constructor(data?: IGetEntityModelOutput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): GetEntityModelOutput {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetEntityModelOutput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.code = _data["code"];
+            this.description = _data["description"];
+            this.relationalType = _data["relationalType"];
+            if (Array.isArray(_data["entityModelProperties"])) {
+                this.entityModelProperties = [] as any;
+                for (let item of _data["entityModelProperties"])
+                    this.entityModelProperties!.push(GetEntityModelPropertyOutput.fromJS(item));
+            }
+            if (Array.isArray(_data["entityModelOutputs"])) {
+                this.entityModelOutputs = [] as any;
+                for (let item of _data["entityModelOutputs"])
+                    this.entityModelOutputs!.push(GetEntityModelOutput.fromJS(item));
+            }
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["code"] = this.code;
+        data["description"] = this.description;
+        data["relationalType"] = this.relationalType;
+        if (Array.isArray(this.entityModelProperties)) {
+            data["entityModelProperties"] = [];
+            for (let item of this.entityModelProperties)
+                data["entityModelProperties"].push(item.toJSON());
+        }
+        if (Array.isArray(this.entityModelOutputs)) {
+            data["entityModelOutputs"] = [];
+            for (let item of this.entityModelOutputs)
+                data["entityModelOutputs"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IGetEntityModelOutput {
+    id: string;
+    code: string | undefined;
+    description: string | undefined;
+    relationalType: RelationalType;
+    entityModelProperties: GetEntityModelPropertyOutput[] | undefined;
+    entityModelOutputs: GetEntityModelOutput[] | undefined;
+}
+
+export class GetEntityModelPropertyOutput implements IGetEntityModelPropertyOutput {
+    id!: string;
+    code!: string | undefined;
+    description!: string | undefined;
+    isRequired!: boolean;
+    maxLength!: number | undefined;
+    minLength!: number | undefined;
+    decimalPrecision!: number | undefined;
+    decimalScale!: number | undefined;
+    enumTypeId!: string | undefined;
+    isEnum!: boolean;
+    enumTypeOutput!: GetEnumTypeOutput;
+    dataTypeId!: string | undefined;
+    dataTypeOutput!: GetDataTypeOutput;
+    entityModelId!: string;
+
+    constructor(data?: IGetEntityModelPropertyOutput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): GetEntityModelPropertyOutput {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetEntityModelPropertyOutput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.code = _data["code"];
+            this.description = _data["description"];
+            this.isRequired = _data["isRequired"];
+            this.maxLength = _data["maxLength"];
+            this.minLength = _data["minLength"];
+            this.decimalPrecision = _data["decimalPrecision"];
+            this.decimalScale = _data["decimalScale"];
+            this.enumTypeId = _data["enumTypeId"];
+            this.isEnum = _data["isEnum"];
+            this.enumTypeOutput = _data["enumTypeOutput"] ? GetEnumTypeOutput.fromJS(_data["enumTypeOutput"]) : <any>undefined;
+            this.dataTypeId = _data["dataTypeId"];
+            this.dataTypeOutput = _data["dataTypeOutput"] ? GetDataTypeOutput.fromJS(_data["dataTypeOutput"]) : <any>undefined;
+            this.entityModelId = _data["entityModelId"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["code"] = this.code;
+        data["description"] = this.description;
+        data["isRequired"] = this.isRequired;
+        data["maxLength"] = this.maxLength;
+        data["minLength"] = this.minLength;
+        data["decimalPrecision"] = this.decimalPrecision;
+        data["decimalScale"] = this.decimalScale;
+        data["enumTypeId"] = this.enumTypeId;
+        data["isEnum"] = this.isEnum;
+        data["enumTypeOutput"] = this.enumTypeOutput ? this.enumTypeOutput.toJSON() : <any>undefined;
+        data["dataTypeId"] = this.dataTypeId;
+        data["dataTypeOutput"] = this.dataTypeOutput ? this.dataTypeOutput.toJSON() : <any>undefined;
+        data["entityModelId"] = this.entityModelId;
+        return data;
+    }
+}
+
+export interface IGetEntityModelPropertyOutput {
+    id: string;
+    code: string | undefined;
+    description: string | undefined;
+    isRequired: boolean;
+    maxLength: number | undefined;
+    minLength: number | undefined;
+    decimalPrecision: number | undefined;
+    decimalScale: number | undefined;
+    enumTypeId: string | undefined;
+    isEnum: boolean;
+    enumTypeOutput: GetEnumTypeOutput;
+    dataTypeId: string | undefined;
+    dataTypeOutput: GetDataTypeOutput;
+    entityModelId: string;
+}
+
+export class GetEntityModelTreeInput implements IGetEntityModelTreeInput {
+    projectId!: string;
+
+    constructor(data?: IGetEntityModelTreeInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): GetEntityModelTreeInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetEntityModelTreeInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.projectId = _data["projectId"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["projectId"] = this.projectId;
+        return data;
+    }
+}
+
+export interface IGetEntityModelTreeInput {
+    projectId: string;
+}
+
+export class GetEntityModelTreeOutput implements IGetEntityModelTreeOutput {
+    key!: string;
+    icon!: string | undefined;
+    code!: string | undefined;
+    title!: string | undefined;
+    parentId!: string | undefined;
+    description!: string | undefined;
+    relationalType!: RelationalType;
+    children!: GetEntityModelTreeOutput[] | undefined;
+
+    constructor(data?: IGetEntityModelTreeOutput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): GetEntityModelTreeOutput {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetEntityModelTreeOutput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.key = _data["key"];
+            this.icon = _data["icon"];
+            this.code = _data["code"];
+            this.title = _data["title"];
+            this.parentId = _data["parentId"];
+            this.description = _data["description"];
+            this.relationalType = _data["relationalType"];
+            if (Array.isArray(_data["children"])) {
+                this.children = [] as any;
+                for (let item of _data["children"])
+                    this.children!.push(GetEntityModelTreeOutput.fromJS(item));
+            }
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["key"] = this.key;
+        data["icon"] = this.icon;
+        data["code"] = this.code;
+        data["title"] = this.title;
+        data["parentId"] = this.parentId;
+        data["description"] = this.description;
+        data["relationalType"] = this.relationalType;
+        if (Array.isArray(this.children)) {
+            data["children"] = [];
+            for (let item of this.children)
+                data["children"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IGetEntityModelTreeOutput {
+    key: string;
+    icon: string | undefined;
+    code: string | undefined;
+    title: string | undefined;
+    parentId: string | undefined;
+    description: string | undefined;
+    relationalType: RelationalType;
+    children: GetEntityModelTreeOutput[] | undefined;
+}
+
+export class GetEnumTypeOutput implements IGetEnumTypeOutput {
+    id!: string;
+    code!: string | undefined;
+    description!: string | undefined;
+
+    constructor(data?: IGetEnumTypeOutput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): GetEnumTypeOutput {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetEnumTypeOutput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.code = _data["code"];
+            this.description = _data["description"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["code"] = this.code;
+        data["description"] = this.description;
+        return data;
+    }
+}
+
+export interface IGetEnumTypeOutput {
+    id: string;
+    code: string | undefined;
+    description: string | undefined;
+}
+
 export class GetFeatureListResultDto implements IGetFeatureListResultDto {
     groups!: FeatureGroupDto[] | undefined;
 
@@ -11443,11 +17166,8 @@ export interface IGetFeatureListResultInput {
 }
 
 export class GetOrganizationUnitRoleInput implements IGetOrganizationUnitRoleInput {
-    /** 当前页面.默认从1开始 */
     pageIndex!: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize!: number;
-    /** 跳过多少条 */
     readonly skipCount!: number;
     organizationUnitId!: string;
 
@@ -11487,11 +17207,8 @@ export class GetOrganizationUnitRoleInput implements IGetOrganizationUnitRoleInp
 }
 
 export interface IGetOrganizationUnitRoleInput {
-    /** 当前页面.默认从1开始 */
     pageIndex: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize: number;
-    /** 跳过多少条 */
     skipCount: number;
     organizationUnitId: string;
 }
@@ -11585,11 +17302,8 @@ export interface IGetOrganizationUnitRoleOutputPagedResultDto {
 }
 
 export class GetOrganizationUnitUserInput implements IGetOrganizationUnitUserInput {
-    /** 当前页面.默认从1开始 */
     pageIndex!: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize!: number;
-    /** 跳过多少条 */
     readonly skipCount!: number;
     organizationUnitId!: string;
     filter!: string | undefined;
@@ -11632,11 +17346,8 @@ export class GetOrganizationUnitUserInput implements IGetOrganizationUnitUserInp
 }
 
 export interface IGetOrganizationUnitUserInput {
-    /** 当前页面.默认从1开始 */
     pageIndex: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize: number;
-    /** 跳过多少条 */
     skipCount: number;
     organizationUnitId: string;
     filter: string | undefined;
@@ -11774,12 +17485,121 @@ export interface IGetPermissionInput {
     providerKey: string | undefined;
 }
 
+export class GetTemplateTreeOutput implements IGetTemplateTreeOutput {
+    key!: string;
+    templateType!: TemplateType;
+    controlType!: ControlType;
+    icon!: string | undefined;
+    name!: string | undefined;
+    description!: string | undefined;
+    title!: string | undefined;
+    content!: string | undefined;
+    children!: GetTemplateTreeOutput[] | undefined;
+
+    constructor(data?: IGetTemplateTreeOutput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): GetTemplateTreeOutput {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetTemplateTreeOutput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.key = _data["key"];
+            this.templateType = _data["templateType"];
+            this.controlType = _data["controlType"];
+            this.icon = _data["icon"];
+            this.name = _data["name"];
+            this.description = _data["description"];
+            this.title = _data["title"];
+            this.content = _data["content"];
+            if (Array.isArray(_data["children"])) {
+                this.children = [] as any;
+                for (let item of _data["children"])
+                    this.children!.push(GetTemplateTreeOutput.fromJS(item));
+            }
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["key"] = this.key;
+        data["templateType"] = this.templateType;
+        data["controlType"] = this.controlType;
+        data["icon"] = this.icon;
+        data["name"] = this.name;
+        data["description"] = this.description;
+        data["title"] = this.title;
+        data["content"] = this.content;
+        if (Array.isArray(this.children)) {
+            data["children"] = [];
+            for (let item of this.children)
+                data["children"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IGetTemplateTreeOutput {
+    key: string;
+    templateType: TemplateType;
+    controlType: ControlType;
+    icon: string | undefined;
+    name: string | undefined;
+    description: string | undefined;
+    title: string | undefined;
+    content: string | undefined;
+    children: GetTemplateTreeOutput[] | undefined;
+}
+
+export class GetTemplteTreeInput implements IGetTemplteTreeInput {
+    templateId!: string;
+
+    constructor(data?: IGetTemplteTreeInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): GetTemplteTreeInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetTemplteTreeInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.templateId = _data["templateId"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["templateId"] = this.templateId;
+        return data;
+    }
+}
+
+export interface IGetTemplteTreeInput {
+    templateId: string;
+}
+
 export class GetUnAddRoleInput implements IGetUnAddRoleInput {
-    /** 当前页面.默认从1开始 */
     pageIndex!: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize!: number;
-    /** 跳过多少条 */
     readonly skipCount!: number;
     organizationUnitId!: string;
     filter!: string | undefined;
@@ -11822,11 +17642,8 @@ export class GetUnAddRoleInput implements IGetUnAddRoleInput {
 }
 
 export interface IGetUnAddRoleInput {
-    /** 当前页面.默认从1开始 */
     pageIndex: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize: number;
-    /** 跳过多少条 */
     skipCount: number;
     organizationUnitId: string;
     filter: string | undefined;
@@ -11921,11 +17738,8 @@ export interface IGetUnAddRoleOutputPagedResultDto {
 }
 
 export class GetUnAddUserInput implements IGetUnAddUserInput {
-    /** 当前页面.默认从1开始 */
     pageIndex!: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize!: number;
-    /** 跳过多少条 */
     readonly skipCount!: number;
     organizationUnitId!: string;
     filter!: string | undefined;
@@ -11968,11 +17782,8 @@ export class GetUnAddUserInput implements IGetUnAddUserInput {
 }
 
 export interface IGetUnAddUserInput {
-    /** 当前页面.默认从1开始 */
     pageIndex: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize: number;
-    /** 跳过多少条 */
     skipCount: number;
     organizationUnitId: string;
     filter: string | undefined;
@@ -13035,7 +18846,6 @@ export class LanguageInfo implements ILanguageInfo {
     uiCultureName!: string | undefined;
     displayName!: string | undefined;
     readonly twoLetterISOLanguageName!: string | undefined;
-    flagIcon!: string | undefined;
 
     constructor(data?: ILanguageInfo) {
         if (data) {
@@ -13052,7 +18862,6 @@ export class LanguageInfo implements ILanguageInfo {
             this.uiCultureName = _data["uiCultureName"];
             this.displayName = _data["displayName"];
             (<any>this).twoLetterISOLanguageName = _data["twoLetterISOLanguageName"];
-            this.flagIcon = _data["flagIcon"];
         }
     }
 
@@ -13069,7 +18878,6 @@ export class LanguageInfo implements ILanguageInfo {
         data["uiCultureName"] = this.uiCultureName;
         data["displayName"] = this.displayName;
         data["twoLetterISOLanguageName"] = this.twoLetterISOLanguageName;
-        data["flagIcon"] = this.flagIcon;
         return data;
     }
 }
@@ -13079,7 +18887,6 @@ export interface ILanguageInfo {
     uiCultureName: string | undefined;
     displayName: string | undefined;
     twoLetterISOLanguageName: string | undefined;
-    flagIcon: string | undefined;
 }
 
 export class LocalizableStringDto implements ILocalizableStringDto {
@@ -13162,11 +18969,8 @@ export interface ILockUserInput {
     locked: boolean;
 }
 
-/** 登录 */
 export class LoginInput implements ILoginInput {
-    /** 用户名或者邮箱 */
     name!: string | undefined;
-    /** 密码 */
     password!: string | undefined;
 
     constructor(data?: ILoginInput) {
@@ -13200,11 +19004,8 @@ export class LoginInput implements ILoginInput {
     }
 }
 
-/** 登录 */
 export interface ILoginInput {
-    /** 用户名或者邮箱 */
     name: string | undefined;
-    /** 密码 */
     password: string | undefined;
 }
 
@@ -13276,14 +19077,12 @@ export enum LoginResultType {
     RequiresTwoFactor = 5,
 }
 
-/** 消息等级 */
 export enum MessageLevel {
     Warning = 10,
     Information = 20,
     Error = 30,
 }
 
-/** 消息类型 */
 export enum MessageType {
     BroadCast = 10,
     Common = 20,
@@ -13605,13 +19404,561 @@ export interface IObjectExtensionsDto {
     enums: { [key: string]: ExtensionEnumDto; } | undefined;
 }
 
-/** 创建语言 */
-export class PageLanguageInput implements IPageLanguageInput {
-    /** 当前页面.默认从1开始 */
+export class OrganizationUnitDto implements IOrganizationUnitDto {
+    id!: string;
+    tenantId!: string | undefined;
+    code!: string | undefined;
+    displayName!: string | undefined;
+    parentId!: string | undefined;
+
+    constructor(data?: IOrganizationUnitDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): OrganizationUnitDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new OrganizationUnitDto();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.code = _data["code"];
+            this.displayName = _data["displayName"];
+            this.parentId = _data["parentId"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["code"] = this.code;
+        data["displayName"] = this.displayName;
+        data["parentId"] = this.parentId;
+        return data;
+    }
+}
+
+export interface IOrganizationUnitDto {
+    id: string;
+    tenantId: string | undefined;
+    code: string | undefined;
+    displayName: string | undefined;
+    parentId: string | undefined;
+}
+
+export class PageEntityModelInput implements IPageEntityModelInput {
     pageIndex!: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize!: number;
-    /** 跳过多少条 */
+    readonly skipCount!: number;
+    id!: string;
+    filter!: string | undefined;
+
+    constructor(data?: IPageEntityModelInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): PageEntityModelInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new PageEntityModelInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.pageIndex = _data["pageIndex"];
+            this.pageSize = _data["pageSize"];
+            (<any>this).skipCount = _data["skipCount"];
+            this.id = _data["id"];
+            this.filter = _data["filter"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["pageIndex"] = this.pageIndex;
+        data["pageSize"] = this.pageSize;
+        data["skipCount"] = this.skipCount;
+        data["id"] = this.id;
+        data["filter"] = this.filter;
+        return data;
+    }
+}
+
+export interface IPageEntityModelInput {
+    pageIndex: number;
+    pageSize: number;
+    skipCount: number;
+    id: string;
+    filter: string | undefined;
+}
+
+export class PageEntityModelPropertyOutput implements IPageEntityModelPropertyOutput {
+    id!: string | undefined;
+    entityModelId!: string;
+    code!: string | undefined;
+    description!: string | undefined;
+    isRequired!: boolean;
+    maxLength!: number | undefined;
+    minLength!: number | undefined;
+    decimalPrecision!: number | undefined;
+    decimalScale!: number | undefined;
+    dataTypeId!: string;
+    isEnum!: boolean;
+    dataTypeCode!: string | undefined;
+    dataTypeDescription!: string | undefined;
+    allowSearch!: boolean;
+    allowAdd!: boolean;
+    allowEdit!: boolean;
+
+    constructor(data?: IPageEntityModelPropertyOutput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): PageEntityModelPropertyOutput {
+        data = typeof data === 'object' ? data : {};
+        let result = new PageEntityModelPropertyOutput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.entityModelId = _data["entityModelId"];
+            this.code = _data["code"];
+            this.description = _data["description"];
+            this.isRequired = _data["isRequired"];
+            this.maxLength = _data["maxLength"];
+            this.minLength = _data["minLength"];
+            this.decimalPrecision = _data["decimalPrecision"];
+            this.decimalScale = _data["decimalScale"];
+            this.dataTypeId = _data["dataTypeId"];
+            this.isEnum = _data["isEnum"];
+            this.dataTypeCode = _data["dataTypeCode"];
+            this.dataTypeDescription = _data["dataTypeDescription"];
+            this.allowSearch = _data["allowSearch"];
+            this.allowAdd = _data["allowAdd"];
+            this.allowEdit = _data["allowEdit"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["entityModelId"] = this.entityModelId;
+        data["code"] = this.code;
+        data["description"] = this.description;
+        data["isRequired"] = this.isRequired;
+        data["maxLength"] = this.maxLength;
+        data["minLength"] = this.minLength;
+        data["decimalPrecision"] = this.decimalPrecision;
+        data["decimalScale"] = this.decimalScale;
+        data["dataTypeId"] = this.dataTypeId;
+        data["isEnum"] = this.isEnum;
+        data["dataTypeCode"] = this.dataTypeCode;
+        data["dataTypeDescription"] = this.dataTypeDescription;
+        data["allowSearch"] = this.allowSearch;
+        data["allowAdd"] = this.allowAdd;
+        data["allowEdit"] = this.allowEdit;
+        return data;
+    }
+}
+
+export interface IPageEntityModelPropertyOutput {
+    id: string | undefined;
+    entityModelId: string;
+    code: string | undefined;
+    description: string | undefined;
+    isRequired: boolean;
+    maxLength: number | undefined;
+    minLength: number | undefined;
+    decimalPrecision: number | undefined;
+    decimalScale: number | undefined;
+    dataTypeId: string;
+    isEnum: boolean;
+    dataTypeCode: string | undefined;
+    dataTypeDescription: string | undefined;
+    allowSearch: boolean;
+    allowAdd: boolean;
+    allowEdit: boolean;
+}
+
+export class PageEntityModelPropertyOutputPagedResultDto implements IPageEntityModelPropertyOutputPagedResultDto {
+    items!: PageEntityModelPropertyOutput[] | undefined;
+    totalCount!: number;
+
+    constructor(data?: IPageEntityModelPropertyOutputPagedResultDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): PageEntityModelPropertyOutputPagedResultDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new PageEntityModelPropertyOutputPagedResultDto();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            if (Array.isArray(_data["items"])) {
+                this.items = [] as any;
+                for (let item of _data["items"])
+                    this.items!.push(PageEntityModelPropertyOutput.fromJS(item));
+            }
+            this.totalCount = _data["totalCount"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        if (Array.isArray(this.items)) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        data["totalCount"] = this.totalCount;
+        return data;
+    }
+}
+
+export interface IPageEntityModelPropertyOutputPagedResultDto {
+    items: PageEntityModelPropertyOutput[] | undefined;
+    totalCount: number;
+}
+
+export class PageEnumTypeInput implements IPageEnumTypeInput {
+    pageIndex!: number;
+    pageSize!: number;
+    readonly skipCount!: number;
+    id!: string;
+    filter!: string | undefined;
+
+    constructor(data?: IPageEnumTypeInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): PageEnumTypeInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new PageEnumTypeInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.pageIndex = _data["pageIndex"];
+            this.pageSize = _data["pageSize"];
+            (<any>this).skipCount = _data["skipCount"];
+            this.id = _data["id"];
+            this.filter = _data["filter"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["pageIndex"] = this.pageIndex;
+        data["pageSize"] = this.pageSize;
+        data["skipCount"] = this.skipCount;
+        data["id"] = this.id;
+        data["filter"] = this.filter;
+        return data;
+    }
+}
+
+export interface IPageEnumTypeInput {
+    pageIndex: number;
+    pageSize: number;
+    skipCount: number;
+    id: string;
+    filter: string | undefined;
+}
+
+export class PageEnumTypeOutput implements IPageEnumTypeOutput {
+    id!: string | undefined;
+    entityModelId!: string;
+    code!: string | undefined;
+    description!: string | undefined;
+    creationTime!: dayjs.Dayjs;
+
+    constructor(data?: IPageEnumTypeOutput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): PageEnumTypeOutput {
+        data = typeof data === 'object' ? data : {};
+        let result = new PageEnumTypeOutput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.entityModelId = _data["entityModelId"];
+            this.code = _data["code"];
+            this.description = _data["description"];
+            this.creationTime = _data["creationTime"] ? dayjs(_data["creationTime"].toString()) : <any>undefined;
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["entityModelId"] = this.entityModelId;
+        data["code"] = this.code;
+        data["description"] = this.description;
+        data["creationTime"] = this.creationTime ? this.creationTime.toLocaleString() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IPageEnumTypeOutput {
+    id: string | undefined;
+    entityModelId: string;
+    code: string | undefined;
+    description: string | undefined;
+    creationTime: dayjs.Dayjs;
+}
+
+export class PageEnumTypeOutputPagedResultDto implements IPageEnumTypeOutputPagedResultDto {
+    items!: PageEnumTypeOutput[] | undefined;
+    totalCount!: number;
+
+    constructor(data?: IPageEnumTypeOutputPagedResultDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): PageEnumTypeOutputPagedResultDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new PageEnumTypeOutputPagedResultDto();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            if (Array.isArray(_data["items"])) {
+                this.items = [] as any;
+                for (let item of _data["items"])
+                    this.items!.push(PageEnumTypeOutput.fromJS(item));
+            }
+            this.totalCount = _data["totalCount"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        if (Array.isArray(this.items)) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        data["totalCount"] = this.totalCount;
+        return data;
+    }
+}
+
+export interface IPageEnumTypeOutputPagedResultDto {
+    items: PageEnumTypeOutput[] | undefined;
+    totalCount: number;
+}
+
+export class PageEnumTypePropertyInput implements IPageEnumTypePropertyInput {
+    pageIndex!: number;
+    pageSize!: number;
+    readonly skipCount!: number;
+    id!: string;
+    filter!: string | undefined;
+
+    constructor(data?: IPageEnumTypePropertyInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): PageEnumTypePropertyInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new PageEnumTypePropertyInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.pageIndex = _data["pageIndex"];
+            this.pageSize = _data["pageSize"];
+            (<any>this).skipCount = _data["skipCount"];
+            this.id = _data["id"];
+            this.filter = _data["filter"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["pageIndex"] = this.pageIndex;
+        data["pageSize"] = this.pageSize;
+        data["skipCount"] = this.skipCount;
+        data["id"] = this.id;
+        data["filter"] = this.filter;
+        return data;
+    }
+}
+
+export interface IPageEnumTypePropertyInput {
+    pageIndex: number;
+    pageSize: number;
+    skipCount: number;
+    id: string;
+    filter: string | undefined;
+}
+
+export class PageEnumTypePropertyOutput implements IPageEnumTypePropertyOutput {
+    id!: string | undefined;
+    code!: string | undefined;
+    value!: number;
+    description!: string | undefined;
+    creationTime!: dayjs.Dayjs;
+
+    constructor(data?: IPageEnumTypePropertyOutput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): PageEnumTypePropertyOutput {
+        data = typeof data === 'object' ? data : {};
+        let result = new PageEnumTypePropertyOutput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.code = _data["code"];
+            this.value = _data["value"];
+            this.description = _data["description"];
+            this.creationTime = _data["creationTime"] ? dayjs(_data["creationTime"].toString()) : <any>undefined;
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["code"] = this.code;
+        data["value"] = this.value;
+        data["description"] = this.description;
+        data["creationTime"] = this.creationTime ? this.creationTime.toLocaleString() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IPageEnumTypePropertyOutput {
+    id: string | undefined;
+    code: string | undefined;
+    value: number;
+    description: string | undefined;
+    creationTime: dayjs.Dayjs;
+}
+
+export class PageEnumTypePropertyOutputPagedResultDto implements IPageEnumTypePropertyOutputPagedResultDto {
+    items!: PageEnumTypePropertyOutput[] | undefined;
+    totalCount!: number;
+
+    constructor(data?: IPageEnumTypePropertyOutputPagedResultDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): PageEnumTypePropertyOutputPagedResultDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new PageEnumTypePropertyOutputPagedResultDto();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            if (Array.isArray(_data["items"])) {
+                this.items = [] as any;
+                for (let item of _data["items"])
+                    this.items!.push(PageEnumTypePropertyOutput.fromJS(item));
+            }
+            this.totalCount = _data["totalCount"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        if (Array.isArray(this.items)) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        data["totalCount"] = this.totalCount;
+        return data;
+    }
+}
+
+export interface IPageEnumTypePropertyOutputPagedResultDto {
+    items: PageEnumTypePropertyOutput[] | undefined;
+    totalCount: number;
+}
+
+export class PageLanguageInput implements IPageLanguageInput {
+    pageIndex!: number;
+    pageSize!: number;
     readonly skipCount!: number;
     filter!: string | undefined;
 
@@ -13650,34 +19997,21 @@ export class PageLanguageInput implements IPageLanguageInput {
     }
 }
 
-/** 创建语言 */
 export interface IPageLanguageInput {
-    /** 当前页面.默认从1开始 */
     pageIndex: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize: number;
-    /** 跳过多少条 */
     skipCount: number;
     filter: string | undefined;
 }
 
-/** 创建语言 */
 export class PageLanguageOutput implements IPageLanguageOutput {
-    /** 语言Id */
     id!: string;
-    /** 语言名称 */
     cultureName!: string | undefined;
-    /** Ui语言名称 */
     uiCultureName!: string | undefined;
-    /** 显示名称 */
     displayName!: string | undefined;
-    /** 图标 */
     flagIcon!: string | undefined;
-    /** 是否启用 */
     isEnabled!: boolean;
-    /** 创建时间 */
     creationTime!: dayjs.Dayjs;
-    /** 是否是默认语言 */
     isDefault!: boolean;
 
     constructor(data?: IPageLanguageOutput) {
@@ -13723,23 +20057,14 @@ export class PageLanguageOutput implements IPageLanguageOutput {
     }
 }
 
-/** 创建语言 */
 export interface IPageLanguageOutput {
-    /** 语言Id */
     id: string;
-    /** 语言名称 */
     cultureName: string | undefined;
-    /** Ui语言名称 */
     uiCultureName: string | undefined;
-    /** 显示名称 */
     displayName: string | undefined;
-    /** 图标 */
     flagIcon: string | undefined;
-    /** 是否启用 */
     isEnabled: boolean;
-    /** 创建时间 */
     creationTime: dayjs.Dayjs;
-    /** 是否是默认语言 */
     isDefault: boolean;
 }
 
@@ -13791,19 +20116,12 @@ export interface IPageLanguageOutputPagedResultDto {
     totalCount: number;
 }
 
-/** 创建语言文本 */
 export class PageLanguageTextInput implements IPageLanguageTextInput {
-    /** 当前页面.默认从1开始 */
     pageIndex!: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize!: number;
-    /** 跳过多少条 */
     readonly skipCount!: number;
-    /** 语言 */
     cultureName!: string | undefined;
-    /** 资源 */
     resourceName!: string | undefined;
-    /** 查询条件 name or value */
     filter!: string | undefined;
 
     constructor(data?: IPageLanguageTextInput) {
@@ -13845,29 +20163,18 @@ export class PageLanguageTextInput implements IPageLanguageTextInput {
     }
 }
 
-/** 创建语言文本 */
 export interface IPageLanguageTextInput {
-    /** 当前页面.默认从1开始 */
     pageIndex: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize: number;
-    /** 跳过多少条 */
     skipCount: number;
-    /** 语言 */
     cultureName: string | undefined;
-    /** 资源 */
     resourceName: string | undefined;
-    /** 查询条件 name or value */
     filter: string | undefined;
 }
 
-/** 创建语言文本 */
 export class PageLanguageTextOutput implements IPageLanguageTextOutput {
-    /** 资源名称 */
     resourceName!: string | undefined;
-    /** 名称 */
     name!: string | undefined;
-    /** 值 */
     value!: string | undefined;
 
     constructor(data?: IPageLanguageTextOutput) {
@@ -13903,13 +20210,9 @@ export class PageLanguageTextOutput implements IPageLanguageTextOutput {
     }
 }
 
-/** 创建语言文本 */
 export interface IPageLanguageTextOutput {
-    /** 资源名称 */
     resourceName: string | undefined;
-    /** 名称 */
     name: string | undefined;
-    /** 值 */
     value: string | undefined;
 }
 
@@ -13961,12 +20264,105 @@ export interface IPageLanguageTextOutputPagedResultDto {
     totalCount: number;
 }
 
+export class PageProjectInput implements IPageProjectInput {
+    pageIndex!: number;
+    pageSize!: number;
+    readonly skipCount!: number;
+    filter!: string | undefined;
+
+    constructor(data?: IPageProjectInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): PageProjectInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new PageProjectInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.pageIndex = _data["pageIndex"];
+            this.pageSize = _data["pageSize"];
+            (<any>this).skipCount = _data["skipCount"];
+            this.filter = _data["filter"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["pageIndex"] = this.pageIndex;
+        data["pageSize"] = this.pageSize;
+        data["skipCount"] = this.skipCount;
+        data["filter"] = this.filter;
+        return data;
+    }
+}
+
+export interface IPageProjectInput {
+    pageIndex: number;
+    pageSize: number;
+    skipCount: number;
+    filter: string | undefined;
+}
+
+export class PageTemplateInput implements IPageTemplateInput {
+    pageIndex!: number;
+    pageSize!: number;
+    readonly skipCount!: number;
+    filter!: string | undefined;
+
+    constructor(data?: IPageTemplateInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): PageTemplateInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new PageTemplateInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.pageIndex = _data["pageIndex"];
+            this.pageSize = _data["pageSize"];
+            (<any>this).skipCount = _data["skipCount"];
+            this.filter = _data["filter"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["pageIndex"] = this.pageIndex;
+        data["pageSize"] = this.pageSize;
+        data["skipCount"] = this.skipCount;
+        data["filter"] = this.filter;
+        return data;
+    }
+}
+
+export interface IPageTemplateInput {
+    pageIndex: number;
+    pageSize: number;
+    skipCount: number;
+    filter: string | undefined;
+}
+
 export class PageTenantConnectionStringInput implements IPageTenantConnectionStringInput {
-    /** 租户id */
     id!: string;
-    /** 连接字符串名称 */
     name!: string | undefined;
-    /** 连接字符串地址 */
     value!: string | undefined;
 
     constructor(data?: IPageTenantConnectionStringInput) {
@@ -14003,20 +20399,14 @@ export class PageTenantConnectionStringInput implements IPageTenantConnectionStr
 }
 
 export interface IPageTenantConnectionStringInput {
-    /** 租户id */
     id: string;
-    /** 连接字符串名称 */
     name: string | undefined;
-    /** 连接字符串地址 */
     value: string | undefined;
 }
 
 export class PageTenantConnectionStringOutput implements IPageTenantConnectionStringOutput {
-    /** 租户id */
     tenantId!: string;
-    /** 连接字符串名称 */
     name!: string | undefined;
-    /** 连接字符串地址 */
     value!: string | undefined;
 
     constructor(data?: IPageTenantConnectionStringOutput) {
@@ -14053,11 +20443,8 @@ export class PageTenantConnectionStringOutput implements IPageTenantConnectionSt
 }
 
 export interface IPageTenantConnectionStringOutput {
-    /** 租户id */
     tenantId: string;
-    /** 连接字符串名称 */
     name: string | undefined;
-    /** 连接字符串地址 */
     value: string | undefined;
 }
 
@@ -14190,38 +20577,22 @@ export interface IPagingAuditLogActionOutput {
 }
 
 export class PagingAuditLogInput implements IPagingAuditLogInput {
-    /** 当前页面.默认从1开始 */
     pageIndex!: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize!: number;
-    /** 跳过多少条 */
     readonly skipCount!: number;
-    /** 排序 */
     sorting!: string | undefined;
-    /** 开始时间 */
     startTime!: dayjs.Dayjs | undefined;
-    /** 结束时间 */
     endTime!: dayjs.Dayjs | undefined;
-    /** 请求方法 */
     httpMethod!: string | undefined;
-    /** 请求地址 */
     url!: string | undefined;
-    /** 用户Id */
     userId!: string | undefined;
-    /** 用户名 */
     userName!: string | undefined;
-    /** 应用程序名称 */
     applicationName!: string | undefined;
-    /** RequestId */
     correlationId!: string | undefined;
-    /** 最大执行时间 */
     maxExecutionDuration!: number | undefined;
-    /** 最小执行时间 */
     minExecutionDuration!: number | undefined;
-    /** 是否有异常 */
     hasException!: boolean | undefined;
     httpStatusCode!: HttpStatusCode;
-    /** 客户端IP */
     clientIpAddress!: string | undefined;
 
     constructor(data?: IPagingAuditLogInput) {
@@ -14286,38 +20657,22 @@ export class PagingAuditLogInput implements IPagingAuditLogInput {
 }
 
 export interface IPagingAuditLogInput {
-    /** 当前页面.默认从1开始 */
     pageIndex: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize: number;
-    /** 跳过多少条 */
     skipCount: number;
-    /** 排序 */
     sorting: string | undefined;
-    /** 开始时间 */
     startTime: dayjs.Dayjs | undefined;
-    /** 结束时间 */
     endTime: dayjs.Dayjs | undefined;
-    /** 请求方法 */
     httpMethod: string | undefined;
-    /** 请求地址 */
     url: string | undefined;
-    /** 用户Id */
     userId: string | undefined;
-    /** 用户名 */
     userName: string | undefined;
-    /** 应用程序名称 */
     applicationName: string | undefined;
-    /** RequestId */
     correlationId: string | undefined;
-    /** 最大执行时间 */
     maxExecutionDuration: number | undefined;
-    /** 最小执行时间 */
     minExecutionDuration: number | undefined;
-    /** 是否有异常 */
     hasException: boolean | undefined;
     httpStatusCode: HttpStatusCode;
-    /** 客户端IP */
     clientIpAddress: string | undefined;
 }
 
@@ -14502,11 +20857,8 @@ export interface IPagingAuditLogOutputPagedResultDto {
 }
 
 export class PagingDataDictionaryDetailInput implements IPagingDataDictionaryDetailInput {
-    /** 当前页面.默认从1开始 */
     pageIndex!: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize!: number;
-    /** 跳过多少条 */
     readonly skipCount!: number;
     dataDictionaryId!: string;
     filter!: string | undefined;
@@ -14549,11 +20901,8 @@ export class PagingDataDictionaryDetailInput implements IPagingDataDictionaryDet
 }
 
 export interface IPagingDataDictionaryDetailInput {
-    /** 当前页面.默认从1开始 */
     pageIndex: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize: number;
-    /** 跳过多少条 */
     skipCount: number;
     dataDictionaryId: string;
     filter: string | undefined;
@@ -14561,17 +20910,11 @@ export interface IPagingDataDictionaryDetailInput {
 
 export class PagingDataDictionaryDetailOutput implements IPagingDataDictionaryDetailOutput {
     id!: string;
-    /** 所属字典Id */
     dataDictionaryId!: string;
-    /** 字典明细编码 */
     code!: string | undefined;
-    /** 展现列表时排序用 */
     order!: number;
-    /** 英文显示名 */
     displayText!: string | undefined;
-    /** 描述 */
     description!: string | undefined;
-    /** 启/停用(默认启用) */
     isEnabled!: boolean;
 
     constructor(data?: IPagingDataDictionaryDetailOutput) {
@@ -14617,17 +20960,11 @@ export class PagingDataDictionaryDetailOutput implements IPagingDataDictionaryDe
 
 export interface IPagingDataDictionaryDetailOutput {
     id: string;
-    /** 所属字典Id */
     dataDictionaryId: string;
-    /** 字典明细编码 */
     code: string | undefined;
-    /** 展现列表时排序用 */
     order: number;
-    /** 英文显示名 */
     displayText: string | undefined;
-    /** 描述 */
     description: string | undefined;
-    /** 启/停用(默认启用) */
     isEnabled: boolean;
 }
 
@@ -14680,11 +21017,8 @@ export interface IPagingDataDictionaryDetailOutputPagedResultDto {
 }
 
 export class PagingDataDictionaryInput implements IPagingDataDictionaryInput {
-    /** 当前页面.默认从1开始 */
     pageIndex!: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize!: number;
-    /** 跳过多少条 */
     readonly skipCount!: number;
     filter!: string | undefined;
 
@@ -14724,22 +21058,16 @@ export class PagingDataDictionaryInput implements IPagingDataDictionaryInput {
 }
 
 export interface IPagingDataDictionaryInput {
-    /** 当前页面.默认从1开始 */
     pageIndex: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize: number;
-    /** 跳过多少条 */
     skipCount: number;
     filter: string | undefined;
 }
 
 export class PagingDataDictionaryOutput implements IPagingDataDictionaryOutput {
     id!: string;
-    /** 字典编码 */
     code!: string | undefined;
-    /** 显示名 */
     displayText!: string | undefined;
-    /** 描述 */
     description!: string | undefined;
 
     constructor(data?: IPagingDataDictionaryOutput) {
@@ -14779,11 +21107,8 @@ export class PagingDataDictionaryOutput implements IPagingDataDictionaryOutput {
 
 export interface IPagingDataDictionaryOutput {
     id: string;
-    /** 字典编码 */
     code: string | undefined;
-    /** 显示名 */
     displayText: string | undefined;
-    /** 描述 */
     description: string | undefined;
 }
 
@@ -14992,30 +21317,18 @@ export interface IPagingEntityPropertyChangeOutput {
 }
 
 export class PagingIdentitySecurityLogInput implements IPagingIdentitySecurityLogInput {
-    /** 当前页面.默认从1开始 */
     pageIndex!: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize!: number;
-    /** 跳过多少条 */
     readonly skipCount!: number;
-    /** 排序 */
     sorting!: string | undefined;
-    /** 开始时间 */
     startTime!: dayjs.Dayjs | undefined;
-    /** 结束时间 */
     endTime!: dayjs.Dayjs | undefined;
     identity!: string | undefined;
-    /** 请求地址 */
     action!: string | undefined;
-    /** 用户Id */
     userId!: string | undefined;
-    /** 用户名 */
     userName!: string | undefined;
-    /** 应用程序名称 */
     applicationName!: string | undefined;
-    /** RequestId */
     correlationId!: string | undefined;
-    /** ClientId */
     clientId!: string | undefined;
 
     constructor(data?: IPagingIdentitySecurityLogInput) {
@@ -15072,30 +21385,18 @@ export class PagingIdentitySecurityLogInput implements IPagingIdentitySecurityLo
 }
 
 export interface IPagingIdentitySecurityLogInput {
-    /** 当前页面.默认从1开始 */
     pageIndex: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize: number;
-    /** 跳过多少条 */
     skipCount: number;
-    /** 排序 */
     sorting: string | undefined;
-    /** 开始时间 */
     startTime: dayjs.Dayjs | undefined;
-    /** 结束时间 */
     endTime: dayjs.Dayjs | undefined;
     identity: string | undefined;
-    /** 请求地址 */
     action: string | undefined;
-    /** 用户Id */
     userId: string | undefined;
-    /** 用户名 */
     userName: string | undefined;
-    /** 应用程序名称 */
     applicationName: string | undefined;
-    /** RequestId */
     correlationId: string | undefined;
-    /** ClientId */
     clientId: string | undefined;
 }
 
@@ -15232,29 +21533,17 @@ export interface IPagingIdentitySecurityLogOutputPagedResultDto {
 }
 
 export class PagingNotificationInput implements IPagingNotificationInput {
-    /** 当前页面.默认从1开始 */
     pageIndex!: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize!: number;
-    /** 跳过多少条 */
     readonly skipCount!: number;
-    /** 标题 */
     title!: string | undefined;
-    /** 内容 */
     content!: string | undefined;
-    /** 发送者Id */
     senderUserId!: string | undefined;
-    /** 发送者名称 */
     senderUserName!: string | undefined;
-    /** 接受者Id */
     receiverUserId!: string | undefined;
-    /** 接受者名称 */
     receiverUserName!: string | undefined;
-    /** 是否已读 */
     read!: boolean | undefined;
-    /** 已读开始时间 */
     startReadTime!: dayjs.Dayjs | undefined;
-    /** 已读结束时间 */
     endReadTime!: dayjs.Dayjs | undefined;
     messageType!: MessageType;
 
@@ -15312,58 +21601,35 @@ export class PagingNotificationInput implements IPagingNotificationInput {
 }
 
 export interface IPagingNotificationInput {
-    /** 当前页面.默认从1开始 */
     pageIndex: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize: number;
-    /** 跳过多少条 */
     skipCount: number;
-    /** 标题 */
     title: string | undefined;
-    /** 内容 */
     content: string | undefined;
-    /** 发送者Id */
     senderUserId: string | undefined;
-    /** 发送者名称 */
     senderUserName: string | undefined;
-    /** 接受者Id */
     receiverUserId: string | undefined;
-    /** 接受者名称 */
     receiverUserName: string | undefined;
-    /** 是否已读 */
     read: boolean | undefined;
-    /** 已读开始时间 */
     startReadTime: dayjs.Dayjs | undefined;
-    /** 已读结束时间 */
     endReadTime: dayjs.Dayjs | undefined;
     messageType: MessageType;
 }
 
 export class PagingNotificationOutput implements IPagingNotificationOutput {
     id!: string;
-    /** 租户id */
     tenantId!: string | undefined;
-    /** 消息标题 */
     title!: string | undefined;
-    /** 消息内容 */
     content!: string | undefined;
     messageType!: MessageType;
     readonly messageTypeName!: string | undefined;
     messageLevel!: MessageLevel;
     readonly messageLevelName!: string | undefined;
-    /** 发送人 */
     senderUserId!: string;
-    /** 发送人用户名 */
     senderUserName!: string | undefined;
-    /** 订阅人
-消息类型是广播消息时，订阅人为空 */
     receiveUserId!: string | undefined;
-    /** 接收人用户名
-消息类型是广播消息时，订接收人用户名为空 */
     receiveUserName!: string | undefined;
-    /** 是否已读 */
     read!: boolean;
-    /** 已读时间 */
     readTime!: dayjs.Dayjs | undefined;
     creationTime!: dayjs.Dayjs;
 
@@ -15426,29 +21692,18 @@ export class PagingNotificationOutput implements IPagingNotificationOutput {
 
 export interface IPagingNotificationOutput {
     id: string;
-    /** 租户id */
     tenantId: string | undefined;
-    /** 消息标题 */
     title: string | undefined;
-    /** 消息内容 */
     content: string | undefined;
     messageType: MessageType;
     messageTypeName: string | undefined;
     messageLevel: MessageLevel;
     messageLevelName: string | undefined;
-    /** 发送人 */
     senderUserId: string;
-    /** 发送人用户名 */
     senderUserName: string | undefined;
-    /** 订阅人
-消息类型是广播消息时，订阅人为空 */
     receiveUserId: string | undefined;
-    /** 接收人用户名
-消息类型是广播消息时，订接收人用户名为空 */
     receiveUserName: string | undefined;
-    /** 是否已读 */
     read: boolean;
-    /** 已读时间 */
     readTime: dayjs.Dayjs | undefined;
     creationTime: dayjs.Dayjs;
 }
@@ -15502,22 +21757,14 @@ export interface IPagingNotificationOutputPagedResultDto {
 }
 
 export class PagingNotificationSubscriptionInput implements IPagingNotificationSubscriptionInput {
-    /** 当前页面.默认从1开始 */
     pageIndex!: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize!: number;
-    /** 跳过多少条 */
     readonly skipCount!: number;
     notificationId!: string;
-    /** 接受者Id */
     receiverUserId!: string | undefined;
-    /** 接受者名称 */
     receiverUserName!: string | undefined;
-    /** 是否已读 */
     read!: boolean | undefined;
-    /** 已读开始时间 */
     startReadTime!: dayjs.Dayjs | undefined;
-    /** 已读结束时间 */
     endReadTime!: dayjs.Dayjs | undefined;
 
     constructor(data?: IPagingNotificationSubscriptionInput) {
@@ -15566,50 +21813,32 @@ export class PagingNotificationSubscriptionInput implements IPagingNotificationS
 }
 
 export interface IPagingNotificationSubscriptionInput {
-    /** 当前页面.默认从1开始 */
     pageIndex: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize: number;
-    /** 跳过多少条 */
     skipCount: number;
     notificationId: string;
-    /** 接受者Id */
     receiverUserId: string | undefined;
-    /** 接受者名称 */
     receiverUserName: string | undefined;
-    /** 是否已读 */
     read: boolean | undefined;
-    /** 已读开始时间 */
     startReadTime: dayjs.Dayjs | undefined;
-    /** 已读结束时间 */
     endReadTime: dayjs.Dayjs | undefined;
 }
 
 export class PagingNotificationSubscriptionOutput implements IPagingNotificationSubscriptionOutput {
     id!: string;
-    /** 租户id */
     tenantId!: string | undefined;
-    /** 消息Id */
     notificationId!: string;
-    /** 接收人id */
     receiveUserId!: string;
-    /** 接收人用户名 */
     receiveUserName!: string | undefined;
-    /** 是否已读 */
     read!: boolean;
-    /** 已读时间 */
     readTime!: dayjs.Dayjs;
-    /** 消息标题 */
     title!: string | undefined;
-    /** 消息内容 */
     content!: string | undefined;
     messageType!: MessageType;
     readonly messageTypeName!: string | undefined;
     messageLevel!: MessageLevel;
     readonly messageLevelName!: string | undefined;
-    /** 发送人 */
     senderUserId!: string;
-    /** 发送人用户名 */
     senderUserName!: string | undefined;
 
     constructor(data?: IPagingNotificationSubscriptionOutput) {
@@ -15671,29 +21900,19 @@ export class PagingNotificationSubscriptionOutput implements IPagingNotification
 
 export interface IPagingNotificationSubscriptionOutput {
     id: string;
-    /** 租户id */
     tenantId: string | undefined;
-    /** 消息Id */
     notificationId: string;
-    /** 接收人id */
     receiveUserId: string;
-    /** 接收人用户名 */
     receiveUserName: string | undefined;
-    /** 是否已读 */
     read: boolean;
-    /** 已读时间 */
     readTime: dayjs.Dayjs;
-    /** 消息标题 */
     title: string | undefined;
-    /** 消息内容 */
     content: string | undefined;
     messageType: MessageType;
     messageTypeName: string | undefined;
     messageLevel: MessageLevel;
     messageLevelName: string | undefined;
-    /** 发送人 */
     senderUserId: string;
-    /** 发送人用户名 */
     senderUserName: string | undefined;
 }
 
@@ -15746,11 +21965,8 @@ export interface IPagingNotificationSubscriptionOutputPagedResultDto {
 }
 
 export class PagingRoleListInput implements IPagingRoleListInput {
-    /** 当前页面.默认从1开始 */
     pageIndex!: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize!: number;
-    /** 跳过多少条 */
     readonly skipCount!: number;
     filter!: string | undefined;
 
@@ -15790,21 +22006,15 @@ export class PagingRoleListInput implements IPagingRoleListInput {
 }
 
 export interface IPagingRoleListInput {
-    /** 当前页面.默认从1开始 */
     pageIndex: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize: number;
-    /** 跳过多少条 */
     skipCount: number;
     filter: string | undefined;
 }
 
 export class PagingTenantInput implements IPagingTenantInput {
-    /** 当前页面.默认从1开始 */
     pageIndex!: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize!: number;
-    /** 跳过多少条 */
     readonly skipCount!: number;
     filter!: string | undefined;
 
@@ -15844,23 +22054,16 @@ export class PagingTenantInput implements IPagingTenantInput {
 }
 
 export interface IPagingTenantInput {
-    /** 当前页面.默认从1开始 */
     pageIndex: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize: number;
-    /** 跳过多少条 */
     skipCount: number;
     filter: string | undefined;
 }
 
 export class PagingUserListInput implements IPagingUserListInput {
-    /** 当前页面.默认从1开始 */
     pageIndex!: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize!: number;
-    /** 跳过多少条 */
     readonly skipCount!: number;
-    /** 关键字 */
     filter!: string | undefined;
 
     constructor(data?: IPagingUserListInput) {
@@ -15899,13 +22102,9 @@ export class PagingUserListInput implements IPagingUserListInput {
 }
 
 export interface IPagingUserListInput {
-    /** 当前页面.默认从1开始 */
     pageIndex: number;
-    /** 每页多少条.每页显示多少记录 */
     pageSize: number;
-    /** 跳过多少条 */
     skipCount: number;
-    /** 关键字 */
     filter: string | undefined;
 }
 
@@ -16109,6 +22308,174 @@ export interface IPermissionTreeDto {
     children: PermissionTreeDto[] | undefined;
 }
 
+export class PreViewCodeInput implements IPreViewCodeInput {
+    templateId!: string;
+    projectId!: string;
+
+    constructor(data?: IPreViewCodeInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): PreViewCodeInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new PreViewCodeInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.templateId = _data["templateId"];
+            this.projectId = _data["projectId"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["templateId"] = this.templateId;
+        data["projectId"] = this.projectId;
+        return data;
+    }
+}
+
+export interface IPreViewCodeInput {
+    templateId: string;
+    projectId: string;
+}
+
+export class ProjectDto implements IProjectDto {
+    id!: string;
+    creationTime!: dayjs.Dayjs;
+    creatorId!: string | undefined;
+    lastModificationTime!: dayjs.Dayjs | undefined;
+    lastModifierId!: string | undefined;
+    tenantId!: string | undefined;
+    owner!: string | undefined;
+    nameSpace!: string | undefined;
+    companyName!: string | undefined;
+    projectName!: string | undefined;
+    remark!: string | undefined;
+    supportTenant!: boolean;
+
+    constructor(data?: IProjectDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): ProjectDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ProjectDto();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.creationTime = _data["creationTime"] ? dayjs(_data["creationTime"].toString()) : <any>undefined;
+            this.creatorId = _data["creatorId"];
+            this.lastModificationTime = _data["lastModificationTime"] ? dayjs(_data["lastModificationTime"].toString()) : <any>undefined;
+            this.lastModifierId = _data["lastModifierId"];
+            this.tenantId = _data["tenantId"];
+            this.owner = _data["owner"];
+            this.nameSpace = _data["nameSpace"];
+            this.companyName = _data["companyName"];
+            this.projectName = _data["projectName"];
+            this.remark = _data["remark"];
+            this.supportTenant = _data["supportTenant"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["creationTime"] = this.creationTime ? this.creationTime.toLocaleString() : <any>undefined;
+        data["creatorId"] = this.creatorId;
+        data["lastModificationTime"] = this.lastModificationTime ? this.lastModificationTime.toLocaleString() : <any>undefined;
+        data["lastModifierId"] = this.lastModifierId;
+        data["tenantId"] = this.tenantId;
+        data["owner"] = this.owner;
+        data["nameSpace"] = this.nameSpace;
+        data["companyName"] = this.companyName;
+        data["projectName"] = this.projectName;
+        data["remark"] = this.remark;
+        data["supportTenant"] = this.supportTenant;
+        return data;
+    }
+}
+
+export interface IProjectDto {
+    id: string;
+    creationTime: dayjs.Dayjs;
+    creatorId: string | undefined;
+    lastModificationTime: dayjs.Dayjs | undefined;
+    lastModifierId: string | undefined;
+    tenantId: string | undefined;
+    owner: string | undefined;
+    nameSpace: string | undefined;
+    companyName: string | undefined;
+    projectName: string | undefined;
+    remark: string | undefined;
+    supportTenant: boolean;
+}
+
+export class ProjectDtoPagedResultDto implements IProjectDtoPagedResultDto {
+    items!: ProjectDto[] | undefined;
+    totalCount!: number;
+
+    constructor(data?: IProjectDtoPagedResultDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): ProjectDtoPagedResultDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ProjectDtoPagedResultDto();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            if (Array.isArray(_data["items"])) {
+                this.items = [] as any;
+                for (let item of _data["items"])
+                    this.items!.push(ProjectDto.fromJS(item));
+            }
+            this.totalCount = _data["totalCount"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        if (Array.isArray(this.items)) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        data["totalCount"] = this.totalCount;
+        return data;
+    }
+}
+
+export interface IProjectDtoPagedResultDto {
+    items: ProjectDto[] | undefined;
+    totalCount: number;
+}
+
 export class PropertyApiDescriptionModel implements IPropertyApiDescriptionModel {
     name!: string | undefined;
     jsonName!: string | undefined;
@@ -16179,6 +22546,11 @@ export interface IPropertyApiDescriptionModel {
     minimum: string | undefined;
     maximum: string | undefined;
     regex: string | undefined;
+}
+
+export enum RelationalType {
+    OnoToOne = 10,
+    OneToMany = 20,
 }
 
 export class RemoteServiceErrorInfo implements IRemoteServiceErrorInfo {
@@ -16458,9 +22830,7 @@ export interface IReturnValueApiDescriptionModel {
 }
 
 export class SendBroadCastMessageInput implements ISendBroadCastMessageInput {
-    /** 消息标题 */
     title!: string | undefined;
-    /** 消息内容 */
     content!: string | undefined;
 
     constructor(data?: ISendBroadCastMessageInput) {
@@ -16495,20 +22865,14 @@ export class SendBroadCastMessageInput implements ISendBroadCastMessageInput {
 }
 
 export interface ISendBroadCastMessageInput {
-    /** 消息标题 */
     title: string | undefined;
-    /** 消息内容 */
     content: string | undefined;
 }
 
 export class SendCommonMessageInput implements ISendCommonMessageInput {
-    /** 消息标题 */
     title!: string | undefined;
-    /** 消息内容 */
     content!: string | undefined;
-    /** 发送人 */
     receiveUserId!: string;
-    /** 发送人名称 */
     receiveUserName!: string | undefined;
 
     constructor(data?: ISendCommonMessageInput) {
@@ -16547,13 +22911,9 @@ export class SendCommonMessageInput implements ISendCommonMessageInput {
 }
 
 export interface ISendCommonMessageInput {
-    /** 消息标题 */
     title: string | undefined;
-    /** 消息内容 */
     content: string | undefined;
-    /** 发送人 */
     receiveUserId: string;
-    /** 发送人名称 */
     receiveUserName: string | undefined;
 }
 
@@ -16638,15 +22998,10 @@ export interface ISetReadInput {
 }
 
 export class SettingItemOutput implements ISettingItemOutput {
-    /** 名称 */
     name!: string | undefined;
-    /** 显示名称 */
     displayName!: string | undefined;
-    /** 描述 */
     description!: string | undefined;
-    /** 值 */
     value!: string | undefined;
-    /** 前端控件类型 */
     type!: string | undefined;
 
     constructor(data?: ISettingItemOutput) {
@@ -16687,22 +23042,15 @@ export class SettingItemOutput implements ISettingItemOutput {
 }
 
 export interface ISettingItemOutput {
-    /** 名称 */
     name: string | undefined;
-    /** 显示名称 */
     displayName: string | undefined;
-    /** 描述 */
     description: string | undefined;
-    /** 值 */
     value: string | undefined;
-    /** 前端控件类型 */
     type: string | undefined;
 }
 
 export class SettingOutput implements ISettingOutput {
-    /** 分组 */
     group!: string | undefined;
-    /** 分组显示名称 */
     groupDisplayName!: string | undefined;
     settingItemOutput!: SettingItemOutput[] | undefined;
 
@@ -16748,11 +23096,49 @@ export class SettingOutput implements ISettingOutput {
 }
 
 export interface ISettingOutput {
-    /** 分组 */
     group: string | undefined;
-    /** 分组显示名称 */
     groupDisplayName: string | undefined;
     settingItemOutput: SettingItemOutput[] | undefined;
+}
+
+export class StringInt32KeyValuePair implements IStringInt32KeyValuePair {
+    key!: string | undefined;
+    value!: number;
+
+    constructor(data?: IStringInt32KeyValuePair) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): StringInt32KeyValuePair {
+        data = typeof data === 'object' ? data : {};
+        let result = new StringInt32KeyValuePair();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.key = _data["key"];
+            this.value = _data["value"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["key"] = this.key;
+        data["value"] = this.value;
+        return data;
+    }
+}
+
+export interface IStringInt32KeyValuePair {
+    key: string | undefined;
+    value: number;
 }
 
 export class StringStringFromSelector implements IStringStringFromSelector {
@@ -16793,6 +23179,279 @@ export class StringStringFromSelector implements IStringStringFromSelector {
 export interface IStringStringFromSelector {
     value: string | undefined;
     label: string | undefined;
+}
+
+export class TemplateDetailDto implements ITemplateDetailDto {
+    id!: string;
+    templateId!: string;
+    templateType!: TemplateType;
+    controlType!: ControlType;
+    parentId!: string | undefined;
+    name!: string | undefined;
+    description!: string | undefined;
+    content!: string | undefined;
+
+    constructor(data?: ITemplateDetailDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): TemplateDetailDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new TemplateDetailDto();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.templateId = _data["templateId"];
+            this.templateType = _data["templateType"];
+            this.controlType = _data["controlType"];
+            this.parentId = _data["parentId"];
+            this.name = _data["name"];
+            this.description = _data["description"];
+            this.content = _data["content"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["templateId"] = this.templateId;
+        data["templateType"] = this.templateType;
+        data["controlType"] = this.controlType;
+        data["parentId"] = this.parentId;
+        data["name"] = this.name;
+        data["description"] = this.description;
+        data["content"] = this.content;
+        return data;
+    }
+}
+
+export interface ITemplateDetailDto {
+    id: string;
+    templateId: string;
+    templateType: TemplateType;
+    controlType: ControlType;
+    parentId: string | undefined;
+    name: string | undefined;
+    description: string | undefined;
+    content: string | undefined;
+}
+
+export class TemplateDto implements ITemplateDto {
+    id!: string;
+    creationTime!: dayjs.Dayjs;
+    creatorId!: string | undefined;
+    lastModificationTime!: dayjs.Dayjs | undefined;
+    lastModifierId!: string | undefined;
+    tenantId!: string | undefined;
+    name!: string | undefined;
+    remark!: string | undefined;
+    templateDetails!: TemplateDetailDto[] | undefined;
+
+    constructor(data?: ITemplateDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): TemplateDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new TemplateDto();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.creationTime = _data["creationTime"] ? dayjs(_data["creationTime"].toString()) : <any>undefined;
+            this.creatorId = _data["creatorId"];
+            this.lastModificationTime = _data["lastModificationTime"] ? dayjs(_data["lastModificationTime"].toString()) : <any>undefined;
+            this.lastModifierId = _data["lastModifierId"];
+            this.tenantId = _data["tenantId"];
+            this.name = _data["name"];
+            this.remark = _data["remark"];
+            if (Array.isArray(_data["templateDetails"])) {
+                this.templateDetails = [] as any;
+                for (let item of _data["templateDetails"])
+                    this.templateDetails!.push(TemplateDetailDto.fromJS(item));
+            }
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["creationTime"] = this.creationTime ? this.creationTime.toLocaleString() : <any>undefined;
+        data["creatorId"] = this.creatorId;
+        data["lastModificationTime"] = this.lastModificationTime ? this.lastModificationTime.toLocaleString() : <any>undefined;
+        data["lastModifierId"] = this.lastModifierId;
+        data["tenantId"] = this.tenantId;
+        data["name"] = this.name;
+        data["remark"] = this.remark;
+        if (Array.isArray(this.templateDetails)) {
+            data["templateDetails"] = [];
+            for (let item of this.templateDetails)
+                data["templateDetails"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface ITemplateDto {
+    id: string;
+    creationTime: dayjs.Dayjs;
+    creatorId: string | undefined;
+    lastModificationTime: dayjs.Dayjs | undefined;
+    lastModifierId: string | undefined;
+    tenantId: string | undefined;
+    name: string | undefined;
+    remark: string | undefined;
+    templateDetails: TemplateDetailDto[] | undefined;
+}
+
+export class TemplateDtoPagedResultDto implements ITemplateDtoPagedResultDto {
+    items!: TemplateDto[] | undefined;
+    totalCount!: number;
+
+    constructor(data?: ITemplateDtoPagedResultDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): TemplateDtoPagedResultDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new TemplateDtoPagedResultDto();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            if (Array.isArray(_data["items"])) {
+                this.items = [] as any;
+                for (let item of _data["items"])
+                    this.items!.push(TemplateDto.fromJS(item));
+            }
+            this.totalCount = _data["totalCount"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        if (Array.isArray(this.items)) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        data["totalCount"] = this.totalCount;
+        return data;
+    }
+}
+
+export interface ITemplateDtoPagedResultDto {
+    items: TemplateDto[] | undefined;
+    totalCount: number;
+}
+
+export class TemplateTreeDto implements ITemplateTreeDto {
+    key!: string;
+    templateType!: TemplateType;
+    controlType!: ControlType;
+    icon!: string | undefined;
+    isFolder!: boolean;
+    name!: string | undefined;
+    description!: string | undefined;
+    title!: string | undefined;
+    content!: string | undefined;
+    children!: TemplateTreeDto[] | undefined;
+
+    constructor(data?: ITemplateTreeDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): TemplateTreeDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new TemplateTreeDto();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.key = _data["key"];
+            this.templateType = _data["templateType"];
+            this.controlType = _data["controlType"];
+            this.icon = _data["icon"];
+            this.isFolder = _data["isFolder"];
+            this.name = _data["name"];
+            this.description = _data["description"];
+            this.title = _data["title"];
+            this.content = _data["content"];
+            if (Array.isArray(_data["children"])) {
+                this.children = [] as any;
+                for (let item of _data["children"])
+                    this.children!.push(TemplateTreeDto.fromJS(item));
+            }
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["key"] = this.key;
+        data["templateType"] = this.templateType;
+        data["controlType"] = this.controlType;
+        data["icon"] = this.icon;
+        data["isFolder"] = this.isFolder;
+        data["name"] = this.name;
+        data["description"] = this.description;
+        data["title"] = this.title;
+        data["content"] = this.content;
+        if (Array.isArray(this.children)) {
+            data["children"] = [];
+            for (let item of this.children)
+                data["children"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface ITemplateTreeDto {
+    key: string;
+    templateType: TemplateType;
+    controlType: ControlType;
+    icon: string | undefined;
+    isFolder: boolean;
+    name: string | undefined;
+    description: string | undefined;
+    title: string | undefined;
+    content: string | undefined;
+    children: TemplateTreeDto[] | undefined;
+}
+
+export enum TemplateType {
+    Folder = 10,
+    File = 20,
 }
 
 export class TenantCreateDto implements ITenantCreateDto {
@@ -17179,6 +23838,50 @@ export interface ITypeApiDescriptionModel {
     properties: PropertyApiDescriptionModel[] | undefined;
 }
 
+export class UpdateAggregateInput implements IUpdateAggregateInput {
+    id!: string;
+    code!: string;
+    description!: string;
+
+    constructor(data?: IUpdateAggregateInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): UpdateAggregateInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateAggregateInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.code = _data["code"];
+            this.description = _data["description"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["code"] = this.code;
+        data["description"] = this.description;
+        return data;
+    }
+}
+
+export interface IUpdateAggregateInput {
+    id: string;
+    code: string;
+    description: string;
+}
+
 export class UpdateDataDictinaryInput implements IUpdateDataDictinaryInput {
     id!: string;
     code!: string | undefined;
@@ -17277,6 +23980,242 @@ export interface IUpdateDetailInput {
     displayText: string | undefined;
     description: string | undefined;
     order: number;
+}
+
+export class UpdateEntityModelInput implements IUpdateEntityModelInput {
+    id!: string;
+    code!: string;
+    description!: string;
+    relationalType!: RelationalType;
+
+    constructor(data?: IUpdateEntityModelInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): UpdateEntityModelInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateEntityModelInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.code = _data["code"];
+            this.description = _data["description"];
+            this.relationalType = _data["relationalType"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["code"] = this.code;
+        data["description"] = this.description;
+        data["relationalType"] = this.relationalType;
+        return data;
+    }
+}
+
+export interface IUpdateEntityModelInput {
+    id: string;
+    code: string;
+    description: string;
+    relationalType: RelationalType;
+}
+
+export class UpdateEntityModelPropertyInput implements IUpdateEntityModelPropertyInput {
+    id!: string;
+    propertyId!: string;
+    code!: string;
+    description!: string;
+    isRequired!: boolean;
+    maxLength!: number | undefined;
+    minLength!: number | undefined;
+    decimalPrecision!: number | undefined;
+    decimalScale!: number | undefined;
+    enumTypeId!: string | undefined;
+    dataTypeId!: string | undefined;
+    entityModelId!: string;
+    allowSearch!: boolean;
+    allowAdd!: boolean;
+    allowEdit!: boolean;
+
+    constructor(data?: IUpdateEntityModelPropertyInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): UpdateEntityModelPropertyInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateEntityModelPropertyInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.propertyId = _data["propertyId"];
+            this.code = _data["code"];
+            this.description = _data["description"];
+            this.isRequired = _data["isRequired"];
+            this.maxLength = _data["maxLength"];
+            this.minLength = _data["minLength"];
+            this.decimalPrecision = _data["decimalPrecision"];
+            this.decimalScale = _data["decimalScale"];
+            this.enumTypeId = _data["enumTypeId"];
+            this.dataTypeId = _data["dataTypeId"];
+            this.entityModelId = _data["entityModelId"];
+            this.allowSearch = _data["allowSearch"];
+            this.allowAdd = _data["allowAdd"];
+            this.allowEdit = _data["allowEdit"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["propertyId"] = this.propertyId;
+        data["code"] = this.code;
+        data["description"] = this.description;
+        data["isRequired"] = this.isRequired;
+        data["maxLength"] = this.maxLength;
+        data["minLength"] = this.minLength;
+        data["decimalPrecision"] = this.decimalPrecision;
+        data["decimalScale"] = this.decimalScale;
+        data["enumTypeId"] = this.enumTypeId;
+        data["dataTypeId"] = this.dataTypeId;
+        data["entityModelId"] = this.entityModelId;
+        data["allowSearch"] = this.allowSearch;
+        data["allowAdd"] = this.allowAdd;
+        data["allowEdit"] = this.allowEdit;
+        return data;
+    }
+}
+
+export interface IUpdateEntityModelPropertyInput {
+    id: string;
+    propertyId: string;
+    code: string;
+    description: string;
+    isRequired: boolean;
+    maxLength: number | undefined;
+    minLength: number | undefined;
+    decimalPrecision: number | undefined;
+    decimalScale: number | undefined;
+    enumTypeId: string | undefined;
+    dataTypeId: string | undefined;
+    entityModelId: string;
+    allowSearch: boolean;
+    allowAdd: boolean;
+    allowEdit: boolean;
+}
+
+export class UpdateEnumTypeInput implements IUpdateEnumTypeInput {
+    id!: string;
+    code!: string;
+    description!: string;
+
+    constructor(data?: IUpdateEnumTypeInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): UpdateEnumTypeInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateEnumTypeInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.code = _data["code"];
+            this.description = _data["description"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["code"] = this.code;
+        data["description"] = this.description;
+        return data;
+    }
+}
+
+export interface IUpdateEnumTypeInput {
+    id: string;
+    code: string;
+    description: string;
+}
+
+export class UpdateEnumTypePropertyInput implements IUpdateEnumTypePropertyInput {
+    enumTypeId!: string;
+    id!: string;
+    code!: string;
+    value!: number;
+    description!: string;
+
+    constructor(data?: IUpdateEnumTypePropertyInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): UpdateEnumTypePropertyInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateEnumTypePropertyInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.enumTypeId = _data["enumTypeId"];
+            this.id = _data["id"];
+            this.code = _data["code"];
+            this.value = _data["value"];
+            this.description = _data["description"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["enumTypeId"] = this.enumTypeId;
+        data["id"] = this.id;
+        data["code"] = this.code;
+        data["value"] = this.value;
+        data["description"] = this.description;
+        return data;
+    }
+}
+
+export interface IUpdateEnumTypePropertyInput {
+    enumTypeId: string;
+    id: string;
+    code: string;
+    value: number;
+    description: string;
 }
 
 export class UpdateFeatureDto implements IUpdateFeatureDto {
@@ -17407,19 +24346,12 @@ export interface IUpdateFeaturesDto {
     features: UpdateFeatureDto[] | undefined;
 }
 
-/** 删除语言 */
 export class UpdateLanguageInput implements IUpdateLanguageInput {
-    /** 语言Id */
     id!: string;
-    /** 语言名称 */
     cultureName!: string | undefined;
-    /** Ui语言名称 */
     uiCultureName!: string | undefined;
-    /** 显示名称 */
     displayName!: string | undefined;
-    /** 图标 */
     flagIcon!: string | undefined;
-    /** 是否启用 */
     isEnabled!: boolean;
 
     constructor(data?: IUpdateLanguageInput) {
@@ -17461,31 +24393,19 @@ export class UpdateLanguageInput implements IUpdateLanguageInput {
     }
 }
 
-/** 删除语言 */
 export interface IUpdateLanguageInput {
-    /** 语言Id */
     id: string;
-    /** 语言名称 */
     cultureName: string | undefined;
-    /** Ui语言名称 */
     uiCultureName: string | undefined;
-    /** 显示名称 */
     displayName: string | undefined;
-    /** 图标 */
     flagIcon: string | undefined;
-    /** 是否启用 */
     isEnabled: boolean;
 }
 
-/** 删除语言文本 */
 export class UpdateLanguageTextInput implements IUpdateLanguageTextInput {
-    /** 资源名称 */
     resourceName!: string;
-    /** 语言名称 */
     cultureName!: string;
-    /** 名称 */
     name!: string;
-    /** 值 */
     value!: string;
 
     constructor(data?: IUpdateLanguageTextInput) {
@@ -17523,15 +24443,10 @@ export class UpdateLanguageTextInput implements IUpdateLanguageTextInput {
     }
 }
 
-/** 删除语言文本 */
 export interface IUpdateLanguageTextInput {
-    /** 资源名称 */
     resourceName: string;
-    /** 语言名称 */
     cultureName: string;
-    /** 名称 */
     name: string;
-    /** 值 */
     value: string;
 }
 
@@ -17657,6 +24572,62 @@ export class UpdatePermissionsDto implements IUpdatePermissionsDto {
 
 export interface IUpdatePermissionsDto {
     permissions: UpdatePermissionDto[] | undefined;
+}
+
+export class UpdateProjectInput implements IUpdateProjectInput {
+    id!: string;
+    owner!: string | undefined;
+    companyName!: string | undefined;
+    projectName!: string | undefined;
+    remark!: string | undefined;
+    supportTenant!: boolean;
+
+    constructor(data?: IUpdateProjectInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): UpdateProjectInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateProjectInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.owner = _data["owner"];
+            this.companyName = _data["companyName"];
+            this.projectName = _data["projectName"];
+            this.remark = _data["remark"];
+            this.supportTenant = _data["supportTenant"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["owner"] = this.owner;
+        data["companyName"] = this.companyName;
+        data["projectName"] = this.projectName;
+        data["remark"] = this.remark;
+        data["supportTenant"] = this.supportTenant;
+        return data;
+    }
+}
+
+export interface IUpdateProjectInput {
+    id: string;
+    owner: string | undefined;
+    companyName: string | undefined;
+    projectName: string | undefined;
+    remark: string | undefined;
+    supportTenant: boolean;
 }
 
 export class UpdateRoleInput implements IUpdateRoleInput {
@@ -17789,6 +24760,150 @@ export class UpdateSettingInput implements IUpdateSettingInput {
 
 export interface IUpdateSettingInput {
     values: { [key: string]: string; } | undefined;
+}
+
+export class UpdateTemplateDetailContentInput implements IUpdateTemplateDetailContentInput {
+    templateId!: string;
+    templateDetailId!: string;
+    content!: string | undefined;
+
+    constructor(data?: IUpdateTemplateDetailContentInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): UpdateTemplateDetailContentInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateTemplateDetailContentInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.templateId = _data["templateId"];
+            this.templateDetailId = _data["templateDetailId"];
+            this.content = _data["content"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["templateId"] = this.templateId;
+        data["templateDetailId"] = this.templateDetailId;
+        data["content"] = this.content;
+        return data;
+    }
+}
+
+export interface IUpdateTemplateDetailContentInput {
+    templateId: string;
+    templateDetailId: string;
+    content: string | undefined;
+}
+
+export class UpdateTemplateDetailInput implements IUpdateTemplateDetailInput {
+    templateId!: string;
+    templateDetailId!: string;
+    controlType!: ControlType;
+    name!: string | undefined;
+    description!: string | undefined;
+    content!: string | undefined;
+
+    constructor(data?: IUpdateTemplateDetailInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): UpdateTemplateDetailInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateTemplateDetailInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.templateId = _data["templateId"];
+            this.templateDetailId = _data["templateDetailId"];
+            this.controlType = _data["controlType"];
+            this.name = _data["name"];
+            this.description = _data["description"];
+            this.content = _data["content"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["templateId"] = this.templateId;
+        data["templateDetailId"] = this.templateDetailId;
+        data["controlType"] = this.controlType;
+        data["name"] = this.name;
+        data["description"] = this.description;
+        data["content"] = this.content;
+        return data;
+    }
+}
+
+export interface IUpdateTemplateDetailInput {
+    templateId: string;
+    templateDetailId: string;
+    controlType: ControlType;
+    name: string | undefined;
+    description: string | undefined;
+    content: string | undefined;
+}
+
+export class UpdateTemplateInput implements IUpdateTemplateInput {
+    id!: string;
+    name!: string | undefined;
+    remark!: string | undefined;
+
+    constructor(data?: IUpdateTemplateInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    static fromJS(data: any): UpdateTemplateInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateTemplateInput();
+        result.init(data);
+        return result;
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            this.remark = _data["remark"];
+        }
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["remark"] = this.remark;
+        return data;
+    }
+}
+
+export interface IUpdateTemplateInput {
+    id: string;
+    name: string | undefined;
+    remark: string | undefined;
 }
 
 export class UpdateTenantInput implements IUpdateTenantInput {

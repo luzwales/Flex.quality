@@ -14,6 +14,7 @@
 
     <ItemGroup>
         <PackageReference Include="Lion.AbpPro.BasicManagement.Application"/>
+        <PackageReference Include="Lion.AbpPro.CodeManagement.Application" Version="1.2.2"/>
         <PackageReference Include="Lion.AbpPro.NotificationManagement.Application"/>
         <PackageReference Include="Lion.AbpPro.DataDictionaryManagement.Application"/>
         <PackageReference Include="Lion.AbpPro.LanguageManagement.Application"/>

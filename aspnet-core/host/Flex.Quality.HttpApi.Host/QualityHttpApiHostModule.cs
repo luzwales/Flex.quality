@@ -37,6 +37,7 @@ public class QualityHttpApiHostModule : AbpModule
         app.UseStaticFiles();
         app.UseMiniProfiler();
         app.UseRouting();
+        //app.UseCors("AllowAllOrigins");
         app.UseCors(QualityHttpApiHostConst.DefaultCorsPolicyName);
         app.UseAuthentication();
 

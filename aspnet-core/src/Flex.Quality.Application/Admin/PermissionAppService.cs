@@ -13,7 +13,7 @@ public class PermissionAppService : IRemoteService
     public IPermissionManager permissionManager { set; get; }
 
     /// <summary>
-    ///     给用户授权
+    ///     给部门授权
     /// </summary>
     /// <param name="Organization"> 3a0cd7eb-38d3-b3c8-927c-cbe3c24677d3</param>
     /// <param name="permissionName">UserInset </param>
@@ -24,7 +24,7 @@ public class PermissionAppService : IRemoteService
     }
 
     /// <summary>
-    ///     给用户授权(批量)
+    ///     给部门授权(批量)
     /// </summary>
     /// <param name="Organization"> 3a0cd7eb-38d3-b3c8-927c-cbe3c24677d3</param>
     /// <param name="permissionNames">UserInset </param>

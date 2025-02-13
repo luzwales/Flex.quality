@@ -1,3 +1,5 @@
+using Lion.AbpPro.CodeManagement;
+using Lion.AbpPro.CodeManagement.EntityFrameworkCore;
 using Lion.AbpPro.LanguageManagement;
 using Volo.Abp.BlobStoring.Database;
 using Volo.Abp.OpenIddict;
@@ -19,6 +21,7 @@ public class QualityDbContext(DbContextOptions<QualityDbContext> options) : AbpD
     IBasicManagementDbContext,
     INotificationManagementDbContext,
     IDataDictionaryManagementDbContext,
+    // ICodeManagementDbContext,
     ILanguageManagementDbContext
 {
     public DbSet<IdentityUser>                    Users                     { get; set; }
@@ -47,6 +50,7 @@ public class QualityDbContext(DbContextOptions<QualityDbContext> options) : AbpD
     public DbSet<Notification>                    Notifications             { get; set; }
     public DbSet<NotificationSubscription>        NotificationSubscriptions { get; set; }
 
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -74,6 +78,7 @@ public class QualityDbContext(DbContextOptions<QualityDbContext> options) : AbpD
         // LanguageManagementDbProperties.DbSchema = "Qa";
         NotificationManagementDbProperties.DbTablePrefix = "Abp_";
         NotificationManagementDbProperties.DbSchema = "Qa";
+        CodeManagementDbProperties.DbTablePrefix = "Qa.Abp_";
 
 
         builder.ConfigureQuality();
@@ -89,5 +94,6 @@ public class QualityDbContext(DbContextOptions<QualityDbContext> options) : AbpD
 
         // 多语言
         builder.ConfigureLanguageManagement();
+        builder.ConfigureCodeManagement();
     }
 }
