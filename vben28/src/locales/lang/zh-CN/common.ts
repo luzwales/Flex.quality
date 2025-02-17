@@ -1,4 +1,6 @@
 export default {
+  default: '默认',
+  isEnabled: '启用？',
   okText: '确认',
   closeText: '关闭',
   cancelText: '取消',

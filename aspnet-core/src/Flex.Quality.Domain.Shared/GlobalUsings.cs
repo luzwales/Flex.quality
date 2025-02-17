@@ -37,3 +37,4 @@ global using Volo.Abp.Timing.Localization.Resources.AbpTiming;
 global using Volo.Abp.Validation;
 global using Volo.Abp.Validation.Localization;
 global using Volo.Abp.VirtualFileSystem;
+global using Humanizer;

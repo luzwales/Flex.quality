@@ -1,4 +1,6 @@
 export default {
+  default: 'Default',
+  isEnabled: 'IsEnable',
   okText: 'OK',
   closeText: 'Close',
   cancelText: 'Cancel',
