@@ -21,7 +21,7 @@ public class QualityDbContext(DbContextOptions<QualityDbContext> options) : AbpD
     IBasicManagementDbContext,
     INotificationManagementDbContext,
     IDataDictionaryManagementDbContext,
-    // ICodeManagementDbContext,
+    //ICodeManagementDbContext,
     ILanguageManagementDbContext
 {
     public DbSet<IdentityUser>                    Users                     { get; set; }
