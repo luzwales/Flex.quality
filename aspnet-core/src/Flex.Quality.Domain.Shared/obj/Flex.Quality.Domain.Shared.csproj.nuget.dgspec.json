@@ -1,0 +1,97 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\dmnandlu\\Desktop\\Software\\Flex.Quality\\aspnet-core\\src\\Flex.Quality.Domain.Shared\\Flex.Quality.Domain.Shared.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\dmnandlu\\Desktop\\Software\\Flex.Quality\\aspnet-core\\src\\Flex.Quality.Domain.Shared\\Flex.Quality.Domain.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\dmnandlu\\Desktop\\Software\\Flex.Quality\\aspnet-core\\src\\Flex.Quality.Domain.Shared\\Flex.Quality.Domain.Shared.csproj",
+        "projectName": "Flex.Quality.Domain.Shared",
+        "projectPath": "C:\\Users\\dmnandlu\\Desktop\\Software\\Flex.Quality\\aspnet-core\\src\\Flex.Quality.Domain.Shared\\Flex.Quality.Domain.Shared.csproj",
+        "packagesPath": "C:\\Users\\dmnandlu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\dmnandlu\\Desktop\\Software\\Flex.Quality\\aspnet-core\\src\\Flex.Quality.Domain.Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\dmnandlu\\Desktop\\Software\\Flex.Quality\\aspnet-core\\NuGet.Config",
+          "C:\\Users\\dmnandlu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "noWarn": [
+            "NU1504"
+          ],
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Lion.AbpPro.BasicManagement.Domain": {
+              "target": "Package",
+              "version": "[8.3.3.1, )"
+            },
+            "Lion.AbpPro.CodeManagement.Domain.Shared": {
+              "target": "Package",
+              "version": "[1.2.2, )"
+            },
+            "Lion.AbpPro.Core": {
+              "target": "Package",
+              "version": "[8.3.3.1, )"
+            },
+            "Lion.AbpPro.DataDictionaryManagement.Domain": {
+              "target": "Package",
+              "version": "[8.3.3.1, )"
+            },
+            "Lion.AbpPro.LanguageManagement.Domain": {
+              "target": "Package",
+              "version": "[8.3.3.1, )"
+            },
+            "Lion.AbpPro.NotificationManagement.Domain": {
+              "target": "Package",
+              "version": "[8.3.3.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

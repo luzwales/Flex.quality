@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Flex.Quality.Domain</name>
+    </assembly>
+    <members>
+        <member name="M:Flex.Quality.Files.FileHelper.CreateDirectory(System.String)">
+            <summary>
+            创建文件夹
+            </summary>
+            <param name="path"></param>
+        </member>
+        <member name="M:Flex.Quality.Files.FileHelper.DeleteDirectory(System.String)">
+            <summary>
+            创建文件夹
+            </summary>
+        </member>
+        <member name="M:Flex.Quality.Files.FileHelper.DeleteFile(System.String)">
+            <summary>
+            创建文件
+            </summary>
+        </member>
+        <member name="M:Flex.Quality.Files.FileHelper.CreateFileAsync(System.String,System.String)">
+            <summary>
+            创建文件
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.QualityDomainService.UnitOfWorkManager">
+            <summary>
+                工作单元管理器
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.QualityDomainService.LocalEventBus">
+            <summary>
+                领域事件总线
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.QualityDomainService.DistributedEventBus">
+            <summary>
+                分布式事件总线
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.QualityDomainService.ObjectMapper">
+            <summary>
+                对象映射器
+            </summary>
+        </member>
+        <member name="M:Flex.Quality.Settings.QualitySettingDefinitionProvider.OverrideDefalutSettings(Volo.Abp.Settings.ISettingDefinitionContext)">
+            <summary>
+                重写默认setting添加自定义属性
+            </summary>
+        </member>
+    </members>
+</doc>

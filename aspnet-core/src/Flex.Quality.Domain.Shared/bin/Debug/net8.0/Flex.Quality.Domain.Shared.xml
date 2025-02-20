@@ -1,0 +1,759 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Flex.Quality.Domain.Shared</name>
+    </assembly>
+    <members>
+        <member name="P:Flex.Quality.DataTypes.Dto.DataTypeDto.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.DataTypes.Dto.DataTypeDto.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.DataTypes.Dto.DataTypeDto.IsEnum">
+            <summary>
+            是否是枚举
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.EntityModelDto.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.EntityModelDto.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.EntityModelDto.RelationalType">
+            <summary>
+            实体关系
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.EntityModelDto.ParentId">
+            <summary>
+            父类Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.EntityModelDto.AggregateId">
+            <summary>
+            聚合根Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.EntityModelDto.EntityModelProperties">
+            <summary>
+            实体模型属性集合
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.EntityModelPropertyDto.Code">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.EntityModelPropertyDto.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.EntityModelPropertyDto.IsRequired">
+            <summary>
+            必填
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.EntityModelPropertyDto.MaxLength">
+            <summary>
+            字符串最大长度
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.EntityModelPropertyDto.MinLength">
+            <summary>
+            字符串最小长度
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.EntityModelPropertyDto.DecimalPrecision">
+            <summary>
+            当类型为decimal时的小数位数 (18,4) 中的18
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.EntityModelPropertyDto.DecimalScale">
+            <summary>
+            当类型为decimal时的字段长度 (18,4) 中的4
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.EntityModelPropertyDto.EnumTypeId">
+            <summary>
+            枚举类型Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.EntityModelPropertyDto.DataTypeId">
+            <summary>
+            数据类型Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.EntityModelPropertyDto.EntityModelId">
+            <summary>
+            实体模型Id
+            </summary>
+        </member>
+        <member name="F:Flex.Quality.EntityModels.RelationalType.OnoToOne">
+            <summary>
+            一对一
+            </summary>
+        </member>
+        <member name="F:Flex.Quality.EntityModels.RelationalType.OneToMany">
+            <summary>
+            一对多
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.EnumTypeDto.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.EnumTypeDto.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.EnumTypeDto.EntityModelId">
+            <summary>
+            实体模型Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.EnumTypeDto.IsEnum">
+            <summary>
+            是否是枚举
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.EnumTypePropertyDto.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.EnumTypePropertyDto.Value">
+            <summary>
+            枚举值
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.EnumTypePropertyDto.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="M:Flex.Quality.Extensions.TreeManager.Distinct(System.Collections.Generic.List{Flex.Quality.Extensions.TreeNode})">
+            <summary>
+            去重
+            </summary>
+            <param name="list"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Flex.Quality.Extensions.TreeManager.InitLevel(Flex.Quality.Extensions.TreeNode,System.Collections.Generic.List{Flex.Quality.Extensions.TreeNode})">
+            <summary>
+            初始化数据 level深度节点，fullTitle完整标题路径，parentFullTitle父级标题
+            </summary>
+        </member>
+        <member name="M:Flex.Quality.Extensions.TreeManager.MegreNode(Flex.Quality.Extensions.TreeNode,System.Collections.Generic.List{Flex.Quality.Extensions.TreeNode}@)">
+            <summary>
+            合并节点
+            </summary>
+        </member>
+        <member name="M:Flex.Quality.Extensions.TreeManager.GetSameNode(System.Collections.Generic.List{Flex.Quality.Extensions.TreeNode},System.Int32)">
+            <summary>
+            获取同一深度下的节点
+            </summary>
+            <param name="list"></param>
+            <param name="level"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Flex.Quality.Extensions.TreeNode.TemplateType">
+            <summary>
+             模板类型
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Extensions.TreeNode.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Extensions.TreeNode.IsFolder">
+            <summary>
+            是否是文件夹
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Extensions.TreeNode.Name">
+            <summary>
+            模板名称
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Extensions.TreeNode.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Extensions.TreeNode.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Extensions.TreeNode.Content">
+            <summary>
+            模板内容
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Extensions.TreeNode.FullTitle">
+            <summary>
+            判断是否有需要合并的
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Extensions.TreeNode.ParentFullTitle">
+            <summary>
+            父级全标题 用来关联合并后的层级关系
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Extensions.TreeNode.Level">
+            <summary>
+            节点深度
+            </summary>
+        </member>
+        <member name="F:Flex.Quality.Extensions.TreeNode.Children">
+            <summary>
+            子节点
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorDataTypeContext.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorDataTypeContext.CodeCamelCase">
+            <summary>
+            首字母小写
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorDataTypeContext.CodePluralized">
+            <summary>
+            复数形式
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorDataTypeContext.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelContext.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelContext.CodeCamelCase">
+            <summary>
+            首字母小写
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelContext.CodePluralized">
+            <summary>
+            复数形式
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelContext.AggregateCode">
+            <summary>
+            聚合根编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelContext.AggregateCodeCamelCase">
+            <summary>
+            首字母小写
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelContext.AggregateCodePluralized">
+            <summary>
+            复数形式
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelContext.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelContext.IsRoot">
+            <summary>
+            是否是聚合根
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelContext.RelationalType">
+            <summary>
+            实体关系
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelContext.Properties">
+            <summary>
+            实体模型属性集合
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelPropertyContext.EntityModelId">
+            <summary>
+            实体模型Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelPropertyContext.Code">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelPropertyContext.Null">
+            <summary>
+            如果不是必填 Guid? Int? DateTime? 枚举?
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelPropertyContext.CodeCamelCase">
+            <summary>
+            首字母小写
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelPropertyContext.CodePluralized">
+            <summary>
+            复数形式
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelPropertyContext.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelPropertyContext.IsRequired">
+            <summary>
+            必填
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelPropertyContext.MaxLength">
+            <summary>
+            字符串最大长度
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelPropertyContext.MinLength">
+            <summary>
+            字符串最小长度
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelPropertyContext.DecimalPrecision">
+            <summary>
+            当类型为decimal时的小数位数 (18,4) 中的18
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelPropertyContext.DecimalScale">
+            <summary>
+            当类型为decimal时的字段长度 (18,4) 中的4
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelPropertyContext.EnumTypeId">
+            <summary>
+            枚举类型Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelPropertyContext.DataTypeId">
+            <summary>
+            数据类型Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEntityModelPropertyContext.IsDataType">
+            <summary>
+            是否是基础类型
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEnumTypeContext.Code">
+            <summary>
+            枚举编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEnumTypeContext.CodeCamelCase">
+            <summary>
+            首字母小写
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEnumTypeContext.CodePluralized">
+            <summary>
+            复数形式
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEnumTypeContext.Description">
+            <summary>
+            枚举描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEnumTypePropertyContext.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEnumTypePropertyContext.CodeCamelCase">
+            <summary>
+            首字母小写
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEnumTypePropertyContext.CodePluralized">
+            <summary>
+            复数形式
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEnumTypePropertyContext.Value">
+            <summary>
+            枚举值
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorEnumTypePropertyContext.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorProjectContext.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorProjectContext.Owner">
+            <summary>
+            负责人
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorProjectContext.NameSpace">
+            <summary>
+            名称空间
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorProjectContext.CompanyName">
+            <summary>
+            公司名称
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorProjectContext.ProjectName">
+            <summary>
+            项目英文名称
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorProjectContext.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelContext.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelContext.CodeCamelCase">
+            <summary>
+            首字母小写
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelContext.CodePluralized">
+            <summary>
+            复数形式
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelContext.AggregateCode">
+            <summary>
+            聚合根编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelContext.AggregateCodeCamelCase">
+            <summary>
+            首字母小写
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelContext.AggregateCodePluralized">
+            <summary>
+            复数形式
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelContext.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelContext.IsRoot">
+            <summary>
+            是否是聚合根
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelContext.RelationalType">
+            <summary>
+            实体关系
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelContext.Properties">
+            <summary>
+            实体模型属性集合
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelContext.EnumTypes">
+            <summary>
+            实体拥有枚举集合
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelPropertyContext.EntityModelId">
+            <summary>
+            实体模型Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelPropertyContext.Code">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelPropertyContext.Null">
+            <summary>
+            如果不是必填 Guid? Int? DateTime? 枚举?
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelPropertyContext.CodeCamelCase">
+            <summary>
+            首字母小写
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelPropertyContext.CodePluralized">
+            <summary>
+            复数形式
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelPropertyContext.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelPropertyContext.IsRequired">
+            <summary>
+            必填
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelPropertyContext.MaxLength">
+            <summary>
+            字符串最大长度
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelPropertyContext.MinLength">
+            <summary>
+            字符串最小长度
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelPropertyContext.DecimalPrecision">
+            <summary>
+            当类型为decimal时的小数位数 (18,4) 中的18
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelPropertyContext.DecimalScale">
+            <summary>
+            当类型为decimal时的字段长度 (18,4) 中的4
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelPropertyContext.EnumTypeId">
+            <summary>
+            枚举类型Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelPropertyContext.IsDataType">
+            <summary>
+            是否是基础类型
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.Generators.GeneratorTreeEntityModelPropertyContext.DataTypeId">
+            <summary>
+            数据类型Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.ProjectDto.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.ProjectDto.Owner">
+            <summary>
+            负责人
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.ProjectDto.NameSpace">
+            <summary>
+            名称空间
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Projects.Dto.ProjectDto.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="F:Flex.Quality.QualityDomainSharedConsts.NameSpace">
+            <summary>名称空间</summary>
+        </member>
+        <member name="F:Flex.Quality.QualityDomainSharedConsts.DefaultCultureName">
+            <summary>默认语言</summary>
+        </member>
+        <member name="T:Flex.Quality.Templates.CopyTemplateDetailDto">
+            <summary>
+            模板明细 
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.CopyTemplateDetailDto.NewId">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.CopyTemplateDetailDto.TemplateId">
+            <summary>
+            模板id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.CopyTemplateDetailDto.NewTemplateId">
+            <summary>
+            模板id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.CopyTemplateDetailDto.TemplateType">
+            <summary>
+             模板类型
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.CopyTemplateDetailDto.ControlType">
+            <summary>
+            模板策略
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.CopyTemplateDetailDto.ParentId">
+            <summary>
+            父级id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.CopyTemplateDetailDto.NewParentId">
+            <summary>
+            父级id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.CopyTemplateDetailDto.Name">
+            <summary>
+            模板名称
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.CopyTemplateDetailDto.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.CopyTemplateDetailDto.Content">
+            <summary>
+            模板内容
+            </summary>
+        </member>
+        <member name="T:Flex.Quality.Templates.TemplateDetailDto">
+            <summary>
+            模板明细 
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.TemplateDetailDto.TemplateId">
+            <summary>
+            模板id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.TemplateDetailDto.TemplateType">
+            <summary>
+             模板类型
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.TemplateDetailDto.ControlType">
+            <summary>
+            模板策略
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.TemplateDetailDto.ParentId">
+            <summary>
+            父级id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.TemplateDetailDto.Name">
+            <summary>
+            模板名称
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.TemplateDetailDto.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.TemplateDetailDto.Content">
+            <summary>
+            模板内容
+            </summary>
+        </member>
+        <member name="T:Flex.Quality.Templates.ControlType">
+            <summary>
+            控制策略
+            </summary>
+        </member>
+        <member name="T:Flex.Quality.Templates.TemplateDto">
+            <summary>
+            模板 
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.TemplateDto.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.TemplateDto.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.TemplateDto.TemplateDetails">
+            <summary>
+            关联属性1:N 模板明细集合
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.TemplateTreeDto.Key">
+            <summary>
+            模板id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.TemplateTreeDto.TemplateType">
+            <summary>
+             模板类型
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.TemplateTreeDto.ControlType">
+            <summary>
+            模板策略
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.TemplateTreeDto.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.TemplateTreeDto.IsFolder">
+            <summary>
+            是否是文件夹
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.TemplateTreeDto.Name">
+            <summary>
+            模板名称
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.TemplateTreeDto.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.TemplateTreeDto.Title">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.TemplateTreeDto.Content">
+            <summary>
+            模板内容
+            </summary>
+        </member>
+    </members>
+</doc>

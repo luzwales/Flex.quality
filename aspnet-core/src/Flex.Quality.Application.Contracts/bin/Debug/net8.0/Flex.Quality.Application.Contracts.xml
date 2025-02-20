@@ -1,0 +1,600 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Flex.Quality.Application.Contracts</name>
+    </assembly>
+    <members>
+        <member name="P:Flex.Quality.EntityModels.Dto.CreateAggregateInput.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.CreateAggregateInput.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.CreateEntityModelInput.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.CreateEntityModelInput.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.CreateEntityModelInput.RelationalType">
+            <summary>
+            实体关系
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.CreateEntityModelPropertyInput.Id">
+            <summary>
+            实体模型Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.CreateEntityModelPropertyInput.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.CreateEntityModelPropertyInput.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.CreateEntityModelPropertyInput.IsRequired">
+            <summary>
+            必填
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.CreateEntityModelPropertyInput.MaxLength">
+            <summary>
+            字符串最大长度
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.CreateEntityModelPropertyInput.MinLength">
+            <summary>
+            字符串最小长度
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.CreateEntityModelPropertyInput.DecimalPrecision">
+            <summary>
+            当类型为decimal时的小数位数 (18,4) 中的18
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.CreateEntityModelPropertyInput.DecimalScale">
+            <summary>
+            当类型为decimal时的字段长度 (18,4) 中的4
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.CreateEntityModelPropertyInput.EnumTypeId">
+            <summary>
+            枚举类型Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.CreateEntityModelPropertyInput.DataTypeId">
+            <summary>
+            数据类型Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetEntityModelOutput.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetEntityModelOutput.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetEntityModelOutput.RelationalType">
+            <summary>
+            实体关系
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetEntityModelOutput.EntityModelProperties">
+            <summary>
+            实体模型属性集合
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetEntityModelPropertyOutput.Code">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetEntityModelPropertyOutput.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetEntityModelPropertyOutput.IsRequired">
+            <summary>
+            必填
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetEntityModelPropertyOutput.MaxLength">
+            <summary>
+            字符串最大长度
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetEntityModelPropertyOutput.MinLength">
+            <summary>
+            字符串最小长度
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetEntityModelPropertyOutput.DecimalPrecision">
+            <summary>
+            当类型为decimal时的小数位数 (18,4) 中的18
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetEntityModelPropertyOutput.DecimalScale">
+            <summary>
+            当类型为decimal时的字段长度 (18,4) 中的4
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetEntityModelPropertyOutput.EnumTypeId">
+            <summary>
+            枚举类型Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetEntityModelPropertyOutput.DataTypeId">
+            <summary>
+            数据类型Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetEntityModelPropertyOutput.EntityModelId">
+            <summary>
+            实体模型Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetDataTypeOutput.Code">
+            <summary>
+            枚举编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetDataTypeOutput.Description">
+            <summary>
+            枚举描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetEnumTypeOutput.Code">
+            <summary>
+            枚举编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetEnumTypeOutput.Description">
+            <summary>
+            枚举描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetEntityModelTreeOutput.Key">
+            <summary>
+            模板id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetEntityModelTreeOutput.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetEntityModelTreeOutput.Code">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetEntityModelTreeOutput.Title">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetEntityModelTreeOutput.ParentId">
+            <summary>
+            父类Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetEntityModelTreeOutput.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.GetEntityModelTreeOutput.RelationalType">
+            <summary>
+            实体关系
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.PageEntityModelPropertyOutput.EntityModelId">
+            <summary>
+            实体模型Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.PageEntityModelPropertyOutput.Code">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.PageEntityModelPropertyOutput.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.PageEntityModelPropertyOutput.IsRequired">
+            <summary>
+            必填
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.PageEntityModelPropertyOutput.MaxLength">
+            <summary>
+            字符串最大长度
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.PageEntityModelPropertyOutput.MinLength">
+            <summary>
+            字符串最小长度
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.PageEntityModelPropertyOutput.DecimalPrecision">
+            <summary>
+            当类型为decimal时的小数位数 (18,4) 中的18
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.PageEntityModelPropertyOutput.DecimalScale">
+            <summary>
+            当类型为decimal时的字段长度 (18,4) 中的4
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.UpdateAggregateInput.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.UpdateAggregateInput.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.UpdateEntityModelInput.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.UpdateEntityModelInput.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.UpdateEntityModelInput.RelationalType">
+            <summary>
+            实体关系
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.UpdateEntityModelPropertyInput.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.UpdateEntityModelPropertyInput.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.UpdateEntityModelPropertyInput.IsRequired">
+            <summary>
+            必填
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.UpdateEntityModelPropertyInput.MaxLength">
+            <summary>
+            字符串最大长度
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.UpdateEntityModelPropertyInput.MinLength">
+            <summary>
+            字符串最小长度
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.UpdateEntityModelPropertyInput.DecimalPrecision">
+            <summary>
+            当类型为decimal时的小数位数 (18,4) 中的18
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.UpdateEntityModelPropertyInput.DecimalScale">
+            <summary>
+            当类型为decimal时的字段长度 (18,4) 中的4
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.UpdateEntityModelPropertyInput.EnumTypeId">
+            <summary>
+            枚举类型Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.UpdateEntityModelPropertyInput.DataTypeId">
+            <summary>
+            数据类型Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EntityModels.Dto.UpdateEntityModelPropertyInput.EntityModelId">
+            <summary>
+            实体模型Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.CreateEnumTypeInput.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.CreateEnumTypeInput.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.CreateEnumTypeInput.EntityModelId">
+            <summary>
+            实体模型Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.CreateEnumTypePropertyInput.EnumTypeId">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.CreateEnumTypePropertyInput.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.CreateEnumTypePropertyInput.Value">
+            <summary>
+            枚举值
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.CreateEnumTypePropertyInput.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.DeleteEnumTypeInput.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.DeleteEnumTypePropertyInput.EnumTypeId">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.DeleteEnumTypePropertyInput.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.PageEnumTypeOutput.EntityModelId">
+            <summary>
+            实体模型Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.PageEnumTypeOutput.Code">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.PageEnumTypeOutput.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.PageEnumTypePropertyOutput.Code">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.PageEnumTypePropertyOutput.Value">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.PageEnumTypePropertyOutput.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.UpdateEnumTypeInput.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.UpdateEnumTypeInput.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.UpdateEnumTypePropertyInput.EnumTypeId">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.UpdateEnumTypePropertyInput.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.UpdateEnumTypePropertyInput.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.UpdateEnumTypePropertyInput.Value">
+            <summary>
+            枚举值
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.EnumTypes.Dto.UpdateEnumTypePropertyInput.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="M:Flex.Quality.Jobs.IRecurringJob.ExecuteAsync">
+            <summary>
+                执行任务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Flex.Quality.Permissions.UserOrganizationPermissionManagementProvider.#ctor(Volo.Abp.PermissionManagement.IPermissionGrantRepository,Volo.Abp.Guids.IGuidGenerator,Volo.Abp.MultiTenancy.ICurrentTenant)">
+            <summary>
+                用户部门 权限管理(提供用户授权)
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.CopyTemplateInput.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.CopyTemplateInput.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.CreateTemplateDetailInput.TemplateId">
+            <summary>
+            模板id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.CreateTemplateDetailInput.Name">
+            <summary>
+            模板类型
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.CreateTemplateDetailInput.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.CreateTemplateDetailInput.Content">
+            <summary>
+            模板内容
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.CreateTemplateDetailNoContentInput.TemplateId">
+            <summary>
+            模板id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.CreateTemplateDetailNoContentInput.Name">
+            <summary>
+            模板类型
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.CreateTemplateDetailNoContentInput.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.CreateTemplateInput.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.CreateTemplateInput.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.GetTemplateTreeOutput.Key">
+            <summary>
+            模板id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.GetTemplateTreeOutput.TemplateType">
+            <summary>
+             模板类型
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.GetTemplateTreeOutput.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.GetTemplateTreeOutput.Name">
+            <summary>
+            模板名称
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.GetTemplateTreeOutput.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.GetTemplateTreeOutput.Title">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.GetTemplateTreeOutput.Content">
+            <summary>
+            模板内容
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.UpdateTemplateDetailContentInput.TemplateId">
+            <summary>
+            模板id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.UpdateTemplateDetailContentInput.Content">
+            <summary>
+            模板内容
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.UpdateTemplateDetailInput.TemplateId">
+            <summary>
+            模板id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.UpdateTemplateDetailInput.Name">
+            <summary>
+            模板类型
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.UpdateTemplateDetailInput.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.UpdateTemplateDetailInput.Content">
+            <summary>
+            模板内容
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.UpdateTemplateDetailNoContentInput.TemplateId">
+            <summary>
+            模板id
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.UpdateTemplateDetailNoContentInput.Name">
+            <summary>
+            模板类型
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.UpdateTemplateDetailNoContentInput.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.UpdateTemplateInput.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Flex.Quality.Templates.Dto.UpdateTemplateInput.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="M:Flex.Quality.Templates.ITemplateAppService.ListAsync">
+            <summary>
+            获取所有模板
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

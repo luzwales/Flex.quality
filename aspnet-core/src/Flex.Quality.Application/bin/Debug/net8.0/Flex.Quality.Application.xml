@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Flex.Quality.Application</name>
+    </assembly>
+    <members>
+        <member name="P:Flex.Quality.Admin.PermissionAppService.permissionManager">
+            <summary>
+                授权管理器
+            </summary>
+        </member>
+        <member name="M:Flex.Quality.Admin.PermissionAppService.GrantPermissionForOrganizationAsync(System.String,System.String)">
+            <summary>
+                给部门授权
+            </summary>
+            <param name="Organization"> 3a0cd7eb-38d3-b3c8-927c-cbe3c24677d3</param>
+            <param name="permissionName">UserInset </param>
+            <returns></returns>
+        </member>
+        <member name="M:Flex.Quality.Admin.PermissionAppService.GrantPermissionsForOrganizationAsync(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+                给部门授权(批量)
+            </summary>
+            <param name="Organization"> 3a0cd7eb-38d3-b3c8-927c-cbe3c24677d3</param>
+            <param name="permissionNames">UserInset </param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

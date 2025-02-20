@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Flex.Quality.EntityFrameworkCore</name>
+    </assembly>
+    <members>
+        <member name="T:Flex.Quality.Migrations.init1">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.init1.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.init1.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.init1.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Flex.Quality.Migrations.updateTableSchema">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.updateTableSchema.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.updateTableSchema.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.updateTableSchema.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Flex.Quality.Migrations.updateTableSchema1">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.updateTableSchema1.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.updateTableSchema1.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.updateTableSchema1.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Flex.Quality.Migrations.updateTableSchema2">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.updateTableSchema2.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.updateTableSchema2.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.updateTableSchema2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Flex.Quality.Migrations.updateTableSchema3">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.updateTableSchema3.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.updateTableSchema3.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.updateTableSchema3.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Flex.Quality.Migrations.updateTableSchema4">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.updateTableSchema4.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.updateTableSchema4.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.updateTableSchema4.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Flex.Quality.Migrations.updateTableSchema5">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.updateTableSchema5.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.updateTableSchema5.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.updateTableSchema5.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Flex.Quality.Migrations.updateTableSchema6">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.updateTableSchema6.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.updateTableSchema6.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.updateTableSchema6.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Flex.Quality.Migrations.addCodeModule">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.addCodeModule.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.addCodeModule.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.addCodeModule.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Flex.Quality.Migrations.addCodeModuleSchema">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.addCodeModuleSchema.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.addCodeModuleSchema.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.addCodeModuleSchema.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Flex.Quality.Migrations.init">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.init.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.init.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Flex.Quality.Migrations.init.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

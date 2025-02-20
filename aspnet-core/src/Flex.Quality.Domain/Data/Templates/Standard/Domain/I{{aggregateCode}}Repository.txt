@@ -1,0 +1,11 @@
+﻿using Volo.Abp.Domain.Repositories;
+using {{ context.Project.NameSpace }}.Domain.Shared;
+
+namespace {{ context.Project.NameSpace }}.Domain;
+
+public partial interface I{{ context.EntityModel.Code }}Repository : IBasicRepository<{{ context.EntityModel.Code }}, Guid>
+{
+    Task<List<{{ context.EntityModel.Code }}>> GetListAsync(int maxResultCount = 10, int skipCount = 0);
+
+    Task<long> GetCountAsync();
+}

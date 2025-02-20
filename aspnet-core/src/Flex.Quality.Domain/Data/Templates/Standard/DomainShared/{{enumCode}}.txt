@@ -1,0 +1,13 @@
+﻿using System.ComponentModel;
+
+namespace {{ context.Project.NameSpace }}.Domain.Shared;
+
+/// <summary>
+/// {{ context.EnumType.Description }}
+/// </summary>
+public enum {{ context.EnumType.Code }}
+{
+  {{~ for prop in context.EnumType.Properties ~}}
+    [Description("{{ prop.Description }}")] {{ prop.Code }} = {{ prop.Value }},
+  {{~ end ~}} 
+}
